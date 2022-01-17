@@ -19,29 +19,18 @@ class Solution:
             return False
         
         x = set(l)
-        print(x)
         
         y = set(pattern)
-        print(y)
         
         for i in pattern:
             l2.append(i)
         
-        print(l2)
-        
         if len(x) == len(y):
-            ##
             for c,v in zip(l2,l):
                 s = c + v
                 l3.append(s)
-            print(l3)
-            
             z = set(l3)
-            print(z)
-            
             if len(x) == len(z):
                 return True
             
-       
-        ##
         return False
