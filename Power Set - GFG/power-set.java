@@ -31,22 +31,27 @@ class Solution
 {
     public List<String> AllPossibleStrings(String s)
     {
-        int n=s.length();
-        int tot=(int)Math.pow(2,n);//total subsequence of 'n' characters is '2^n'
-        List<String> ans=new ArrayList<>();
-        
-        for(int i=0;i<tot;i++)
-        {
-            String ns="";
-            for(int j=0;j<n;j++)
-            {
-                if((i&(1<<j)) != 0)
-                    ns+=s.charAt(j);
-            }
-            if(ns.length()>0)
-            ans.add(ns);
-        }
+        // Code here
+        List<String> ans = new ArrayList<>();
+        String in = s;
+        String out = "";
+        ans = generate(in , out , ans);
         Collections.sort(ans);
+        ans.remove(0);
+        return ans;
+    }
+    
+    public List<String> generate(String in , String out , List<String> ans){
+        if(in.length() == 0){
+            ans.add(out);
+            return ans;
+        }
+        
+        char char_at_0 = in.charAt(0);
+        String left = in.substring(1);
+        
+        generate(left , out , ans);
+        generate(left , out+char_at_0 , ans);
         return ans;
     }
 }
