@@ -1,0 +1,13 @@
+class Solution {
+    public int uniquePaths(int m, int n) {
+        
+        return path(m,n);
+    }
+    
+    public int path(int m , int n){
+        if(m==1 || n==1){
+            return 1;
+        }
+        return path(m-1 , n) + path(m , n-1);
+    }
+}
