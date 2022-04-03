@@ -30,32 +30,35 @@ class Solution {
     public List<String> find_permutation(String S) {
         // Code here
         List<String> ans = new ArrayList<>();
-        int n = S.length() - 1;
-        ans = permutation(S,0,n,ans);
+        int left = 0;
+        int right = S.length() - 1;
+        ans = permutation(S,left , right , ans);
         Collections.sort(ans);
         return ans;
     }
     
-    public  List<String> permutation(String s , int left , int right , List<String> ans) {
-		if(left == right) {
-			ans.add(s);
-			return ans;
-		}else {
-			for(int i = left ; i <= right ; i++) {
-				String swapped= swap(s , left , i);
-				permutation(swapped , left+1 , right , ans);
-			}
-		}
-		return ans;
-	}
-	
-	public String swap(String s , int i ,int j) {
-		char temp;
-		char[] charArray = s.toCharArray();
-		temp = charArray[i];
-		charArray[i] = charArray[j];
-		charArray[j] = temp;
-		return String.valueOf(charArray);
-		
-	}
+    public List<String> permutation(String s , int left , int right , List<String> ans){
+        if(left == right){
+            ans.add(s);
+            return ans;
+        }
+            for(int i = left ; i <= right ; i++){
+            String op = swap(s , left , i);
+            permutation(op , left + 1 , right , ans);
+        
+        }
+        
+        
+        return ans;
+    }
+    
+    public String swap(String s , int i , int j){
+        char temp;
+        char[] chararray = s.toCharArray();
+        temp = chararray[i];
+        chararray[i] = chararray[j];
+        chararray[j] = temp;
+        String p = String.valueOf(chararray);
+        return p;
+    }
 }
