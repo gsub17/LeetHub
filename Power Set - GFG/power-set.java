@@ -33,25 +33,24 @@ class Solution
     {
         // Code here
         List<String> ans = new ArrayList<>();
-        String in = s;
-        String out = "";
-        ans = generate(in , out , ans);
+        String emp = "";
+        ans = subset(s ,emp ,ans);
         Collections.sort(ans);
         ans.remove(0);
         return ans;
     }
     
-    public List<String> generate(String in , String out , List<String> ans){
-        if(in.length() == 0){
-            ans.add(out);
+    public List<String> subset(String s , String emp , List<String> ans){
+        if(s.length() == 0){
+            ans.add(emp);
             return ans;
         }
         
-        char char_at_0 = in.charAt(0);
-        String left = in.substring(1);
+        char char_at_0 = s.charAt(0);
+        String left = s.substring(1);
         
-        generate(left , out , ans);
-        generate(left , out+char_at_0 , ans);
+        subset(left , emp+char_at_0 , ans);
+        subset(left , emp , ans);
         return ans;
     }
 }
