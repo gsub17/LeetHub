@@ -41,7 +41,7 @@ class Solution{
     static ArrayList<ArrayList<Integer>> nQueen(int n) {
         // code here
         int[][] board = new int[n][n];
-        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
         placethequeen(board , 0 , n , ans);
         return ans;
     }
