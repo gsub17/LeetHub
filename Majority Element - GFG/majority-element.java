@@ -32,29 +32,32 @@ class Solution
 {
     static int majorityElement(int a[], int size)
     {
-        // your code here
-        int cand = a[0];
+        // your code 
+        int major = a[0];
         int count = 1;
         
         for(int i = 1 ; i < size ; i++){
             if(count == 0){
-                cand = a[i];
+                major = a[i];
                 count++;
-            }else if(cand == a[i]){
+            }else if(major == a[i]){
                 count++;
-            }else{
-                count--;
-            }
+        }else{
+            count--;
         }
-        float count2 = 0;
-        for(int  i = 0 ; i < size ; i++){
-            if(a[i] == cand){
-                count2 += 1;
-            }
+    }
+    
+    float nano = size/2 ;
+    float count2 = 0;
+    for(int i = 0 ; i < size ;i++){
+        if(a[i] == major){
+            count2 = count2 + 1;
         }
-        if(count2 > size/2){
-            return cand;
-        }
-        return -1;
+        
+    }
+    if(count2 > nano){
+        return major;
+    }
+    return -1;
     }
 }
