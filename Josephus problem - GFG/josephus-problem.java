@@ -34,15 +34,14 @@ class Solution
    public int josephus(int n, int k)
     {
         //Your code here
-        return check(n,k) + 1;
+        int x = check(n,k);
+        return x+1;
     }
-    
     public int check(int n , int k){
-        
-        if(n == 1){
+        if(n==1){
             return 0;
         }
-        return (check(n-1,k)+k)%n;
+        return (check(n-1 , k)+k)%n;
     }
 
 }
