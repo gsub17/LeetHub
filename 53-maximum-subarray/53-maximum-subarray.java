@@ -1,6 +1,6 @@
 class Solution {
     public int maxSubArray(int[] nums) {
-       
+        
         int currsum = nums[0];
         int maxsum = nums[0];
         
@@ -19,6 +19,5 @@ class Solution {
             }
         }
         return maxsum;
-        
     }
 }
