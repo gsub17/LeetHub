@@ -31,32 +31,33 @@ class Solution {
         // Code here
         List<String> ans = new ArrayList<>();
         int i = 0;
-        int j = S.length() - 1;
-        ans = permutation(S,i,j,ans);
+        int j = S.length()-1;
+        permutation(S , i , j, ans);
         Collections.sort(ans);
         return ans;
     }
     
-    public List<String> permutation(String s , int left , int right , List<String> ans){
-        if(left==right){
+    public void permutation(String s , int left , int right ,List<String> ans){
+        if(left == right){
             ans.add(s);
-            return ans;
+            return ;
         }
         
-        for(int i = left ; i <= right ; i++ ){
-            String s0 = swap(s , left , i);
-            permutation(s0 , left+1 , right , ans);
+        for(int i =left ; i <= right ;i++){
+            String so = swap(s , left , i);
+            permutation(so , left + 1 , right , ans);
         }
-        return ans;
+        return;
     }
     
     public String swap(String s , int i , int j){
-        char temp ;
-        char[] chararray = s.toCharArray();
-        temp = chararray[i];
-        chararray[i] = chararray[j];
-        chararray[j] = temp;
-        String p = String.valueOf(chararray);
+        char temp;
+        char[] arr = s.toCharArray();
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        String p = String.valueOf(arr);
         return p;
+        
     }
 }
