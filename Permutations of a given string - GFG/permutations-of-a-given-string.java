@@ -46,6 +46,7 @@ class Solution {
         for(int i =left ; i <= right ;i++){
             String so = swap(s , left , i);
             permutation(so , left + 1 , right , ans);
+            String so2 = swap(s , left , i);
         }
         return;
     }
