@@ -36,7 +36,7 @@ class Solution
         int major = a[0];
         int count = 1;
         
-        for(int i = 1 ; i < size;i++){
+        for(int i = 1 ; i < size ; i++){
             if(count == 0){
                 major = a[i];
                 count++;
@@ -46,14 +46,14 @@ class Solution
                 count--;
             }
         }
-        float n = size/2;
         float count2 = 0;
-        for(int i = 0 ; i < size ;i++){
-            if(major==a[i]){
-                count2 += 1;
+        for(int j = 0 ; j < size ; j++){
+            if(a[j] == major){
+                count2++;
             }
         }
-        if(count2 > n){
+        
+        if(count2 > size/2){
             return major;
         }
         return -1;
