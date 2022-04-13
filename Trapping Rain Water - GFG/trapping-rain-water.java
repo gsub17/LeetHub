@@ -38,33 +38,33 @@ class Solution{
     // n: size of array
     // Function to find the trapped water between the blocks.
     static long trappingWater(int arr[], int n) { 
-        // Your code here
-        // left_max
-        int[] left_max = new int[n];
-        left_max[0] = arr[0];
+        //left aux array
+        int[] left_aux = new int[n];
+        left_aux[0] = arr[0];
         for(int i = 1 ; i < n ; i++){
-            if(left_max[i-1] > arr[i]){
-                left_max[i] = left_max[i-1];
+            if(left_aux[i-1] > arr[i]){
+                left_aux[i] = left_aux[i-1];
             }else{
-                left_max[i] = arr[i];
+                left_aux[i] = arr[i];
             }
         }
         
-        int[] right_max = new int[n];
-        right_max[n-1] = arr[n-1];
-        for(int i = n-2 ; i >= 0 ;i--){
-            if(right_max[i+1] > arr[i]){
-                right_max[i] = right_max[i+1];
+        int[] right_aux = new int[n];
+        right_aux[n-1] = arr[n-1];
+        for(int j = n-2 ; j >= 0 ; j-- ){
+            if(right_aux[j+1] > arr[j]){
+                right_aux[j] = right_aux[j+1];
             }else{
-                right_max[i] = arr[i];
+                right_aux[j] = arr[j];
             }
         }
-         long water=0;
-        for(int i = 0 ; i < n ; i++){
-            int temp = Math.min(right_max[i] , left_max[i]) - arr[i];
-            water += temp;
+        long sum = 0;
+        for(int  i = 0 ; i < n ; i++){
+            sum = Math.min(left_aux[i] , right_aux[i]) - arr[i] + sum;
         }
-        return water;
+        return sum;
+        
+        
     } 
 }
 
