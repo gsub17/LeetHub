@@ -1,22 +1,22 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int x = find(nums , 0 , nums.length - 1 , target);
+        int x = bs(nums , target , 0 , nums.length-1);
         return x;
     }
     
-    public int find(int[] nums , int left , int right , int target){
-        if(left > right){
+    public int bs(int[] nums , int target , int s , int e){
+        if(s > e){
             return -1;
         }
-        int mid = (left+right)/2;
+        
+        int mid = (s+e)/2;
         if(nums[mid] == target){
             return mid;
         }
-        
-        if(nums[mid] < target){
-            return find(nums , left +1 , right , target);
-        }else{
-            return find(nums , left , right - 1 ,target);
+        if(nums[mid] > target){
+            return bs(nums , target ,s , mid-1 );
         }
+        
+        return bs(nums , target , mid+1 , e);
     }
 }
