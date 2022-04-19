@@ -31,37 +31,35 @@ class GFG{
 
 class Solution 
 { 
-    static int Search(int array[], int target)
+    static int Search(int arr[], int target)
 	{
 	    // code here
-	    int low = 0 , high = array.length -1;
-	    int x = -20;
+	    int low = 0 ;
+	    int high = arr.length-1;
+	    
 	    while(low <= high){
 	        int mid = (low+high)/2;
-	        if(array[mid] == target){
-	            x = mid;
-	            return x;
+	        if(arr[mid] == target){
+	            return mid;
 	        }
-	        if(array[low] < array[mid]){
-	            if(target >= array[low] && target < array[mid]){
+	        
+	        if(arr[mid] > arr[low]){
+	            if(arr[low] <= target && arr[mid] > target){
 	                high = mid - 1;
 	            }else{
 	                low = mid + 1;
 	            }
 	        }else{
-	            if(target > array[mid] && target <= array[high]){
+	            if(arr[mid] < target && arr[high] >= target){
 	                low = mid + 1;
 	            }else{
-	                high = mid - 1;
-	            } 
+	                high = mid -1 ;
+	            }
 	        }
-	        
 	    }
-	    if(x != -20){
-	        return x;
-	    }
-	    
 	    return -1;
 	}
+	
+
 } 
 
