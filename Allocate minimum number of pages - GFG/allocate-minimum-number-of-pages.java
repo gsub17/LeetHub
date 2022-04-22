@@ -37,7 +37,7 @@ class Solution
     {
         //Your code here
         int min = 0 , max = 0;
-        for(int i = 0 ; i < A.length ;i++){
+        for(int i = 0 ; i<N;i++){
             max += A[i];
             if(A[i] > min){
                 min = A[i];
@@ -45,29 +45,31 @@ class Solution
         }
         int res = 0;
         while(min <= max){
-            int mid = (min + max)/2;
-            if(isfeasible(A, M , mid)){
+            int mid = (min+max)/2;
+            if(isFeasible(A , mid , M)){
                 res = mid;
                 max = mid - 1;
             }else{
-                min = mid + 1;
+                min = mid +1;
             }
+            
         }
         return res;
+        
     }
     
-    public static boolean isfeasible(int[] a , int m , int res){
+    public static boolean isFeasible(int[] A , int mid ,int M){
         int sum = 0 , book = 1;
-        for(int i = 0 ; i < a.length ; i++){
-            if(sum + a[i] > res){
-                sum = a[i];
-                book++;
-            }else{
-                sum += a[i];
-            }
+        for(int i = 0 ; i < A.length ; i++){
+        if(sum + A[i] > mid){
+            sum = A[i];
+            book++;
+        }else{
+            sum+= A[i];
+        }
         }
         
-        if(book <= m){
+        if(book <= M){
             return true;
         }
         return false;
