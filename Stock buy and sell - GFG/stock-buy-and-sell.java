@@ -43,16 +43,18 @@ public class GFG {
 class Solution{
     //Function to find the days of buying and selling stock for max profit.
     ArrayList<ArrayList<Integer> > stockBuySell(int A[], int n) {
-        // code here
         ArrayList<ArrayList<Integer> > ans = new ArrayList<ArrayList<Integer> >();
         
-        for(int i = 0 ; i < n-1 ;i++){
-            ArrayList<Integer> ans2 = new ArrayList<>();
-            if(A[i] < A[i+1]){
-                ans2.add(i);
-                ans2.add(i+1);
-                ans.add(ans2);
+        // code here
+        
+        for(int i = 1 ; i < n ; i++){
+            ArrayList<Integer> arr = new ArrayList<>();
+            if(A[i] > A[i-1]){
+                arr.add(i-1);
+                arr.add(i);
+                ans.add(arr);
             }
+            
         }
         
         return ans;
