@@ -1,7 +1,5 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        if ransomNote in magazine:
-            return True
         m1 = {}
         for i in magazine:
             m1[i]= 0
