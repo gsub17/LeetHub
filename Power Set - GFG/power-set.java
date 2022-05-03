@@ -33,24 +33,22 @@ class Solution
     {
         // Code here
         List<String> ans = new ArrayList<>();
-        String b = "";
-        ans = sequence(s , b , ans);
+        ans = powerset(s,"",ans);
         Collections.sort(ans);
         ans.remove(0);
-        return(ans);
+        return ans;
     }
     
-    public List<String> sequence(String s , String b , List<String> ans){
+    public List<String> powerset(String s , String e, List<String> ans){
         if(s.length() == 0){
-           ans.add(b);
-           return ans;
+            ans.add(e);
+            return ans;
         }
-        
-        char char_at_0 = s.charAt(0);
+        char charAt0 = s.charAt(0);
         String left = s.substring(1);
         
-        sequence(left , b , ans);
-        sequence(left ,  b+char_at_0 , ans);
+        powerset(left , e+charAt0 , ans);
+        powerset(left , e , ans);
         return ans;
     }
 }
