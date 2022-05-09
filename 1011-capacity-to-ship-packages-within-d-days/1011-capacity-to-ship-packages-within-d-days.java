@@ -1,22 +1,17 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
-        
-        int min = 0, max = 0;  
-        // min - max value in the array 
-        // max - sum of all value in array
+     int min = 0; // max value in the array
+     int max = 0; // sum of all weights
         for(int i = 0 ; i < weights.length ;i++){
             max += weights[i];
-            if(weights[i] > min){
-                min = weights[i];
-            }
+            min = Math.max(weights[i],min);
         }
         int res = 0;
-        
         while(min <= max){
-            int mid = (min + max)/2;
-            if(isfeasible(weights , days , mid)){
+            int mid = (min+max)/2;
+            if(isFeasible(weights , mid , days)){
                 res = mid;
-                max = mid - 1;
+                max = mid -1;
             }else{
                 min = mid + 1;
             }
@@ -24,14 +19,14 @@ class Solution {
         return res;
     }
     
-    public boolean isfeasible(int[] a , int k , int res){
-        int day = 1 , sum = 0;  // day is 1
-        for(int i = 0 ; i<a.length ; i++){
-            if(sum + a[i] > res){
+    public boolean isFeasible(int[] a , int mid , int k){
+        int sum = 0 , day = 1;
+        for(int i = 0 ; i < a.length ;i++){
+            if(sum+a[i] > mid){
                 day++;
                 sum = a[i];
             }else{
-                sum += a[i];
+                sum+= a[i];
             }
         }
         if(day <= k){
@@ -39,6 +34,4 @@ class Solution {
         }
         return false;
     }
-    
-    
 }
