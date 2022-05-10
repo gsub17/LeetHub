@@ -53,12 +53,12 @@ class Solution{
     public static int doUnion(int a[], int n, int b[], int m) 
     {
         //Your code here
-        HashSet<Integer> set = new HashSet<>();
-        for(int i = 0 ; i < n ; i++){
-            set.add(a[i]);
+        HashSet<Integer> set = new HashSet<>(); //unordered set
+        for(int i:a){
+            set.add(i);
         }
-        for(int i = 0 ; i < m ;i++){
-            set.add(b[i]);
+        for(int i:b){
+            set.add(i);
         }
         return set.size();
     }
