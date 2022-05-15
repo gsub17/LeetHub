@@ -32,30 +32,33 @@ class Main{
 class Solution
 {
     //Function to find a continuous sub-array which adds up to a given number.
-    static ArrayList<Integer> subarraySum(int[] arr, int n, int k) 
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
         // Your code here
-        HashMap<Integer,Integer> map = new HashMap<>();
-        int sum = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        HashMap<Integer , Integer> map = new HashMap<>();
+        int currsum = 0;
         int start = 0;
         int end = -1;
-        
-        for(int i = 0 ; i < n;i++){
-            sum+=arr[i];
-            if(sum == k){
+        for(int i = 0 ; i < n ;i++){
+            currsum += arr[i];
+            if(currsum == s){
                 start = 0;
                 end = i;
                 break;
             }
-            if(map.containsKey(sum-k)){
-                start = map.get(sum-k)+1; // add 1 imp
+            
+            if(map.containsKey(currsum-s)){
+                start = map.get(currsum-s)+1;
                 end = i;
                 break;
             }
-            map.put(sum , i);
+            
+         //   if(!map.containsKey(currsum-s)){
+                map.put(currsum , i);
+           // }
         }
         
-        ArrayList<Integer> ans = new ArrayList<>();
         if(end == -1){
             ans.add(-1);
             return ans;
