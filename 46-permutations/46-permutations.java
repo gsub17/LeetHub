@@ -1,29 +1,29 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        ans = permutation(nums , 0 , nums.length-1 ,ans );
+        ans = permute(nums , 0 , nums.length-1 , ans);
         return ans;
     }
     
-    public List<List<Integer>> permutation(int[] nums , int left , int right ,List<List<Integer>> ans){
-        if(left == right){
-            List<Integer> k = new ArrayList<>();
-            for(int i = 0 ; i < nums.length ; i++){
-                k.add(nums[i]);
+    public List<List<Integer>> permute(int[] nums , int s,int e,List<List<Integer>> ans){
+        if(s == e){
+            List<Integer> ans2 = new ArrayList<>();
+            for(int i:nums){
+                ans2.add(i);
             }
-            ans.add(k);
+            ans.add(ans2);
             return ans;
         }
         
-        for(int i = left ; i <= right ; i++){
-            int[] n1 = swap(nums , left , i);
-            permutation(nums , left+1 , right,ans);
-            int[] n2 = swap(nums , left , i);
+        for(int i=s;i<=e;i++ ){
+            int[] nums1 = swap(nums , s , i);
+            permute(nums1 , s+1,e,ans);
+            int[] nums2 = swap(nums , s , i);
         }
         return ans;
     }
     
-    public int[] swap(int[]nums , int i , int j){
+    public int[] swap(int[] nums , int i , int j){
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
