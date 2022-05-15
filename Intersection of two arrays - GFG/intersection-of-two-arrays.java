@@ -53,17 +53,18 @@ class Solution {
     // the intersection of two arrays.
     public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
         // Your code here
-        HashSet<Integer> set1 = new HashSet<>();
-        HashSet<Integer> set2 = new HashSet<>();
-        for(int i:a){
-            set1.add(i);
+        HashMap<Integer , Integer> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
+        
+        for(int i :a){
+            map.put(i , map.getOrDefault(i , 0)+1);
         }
+        
         for(int i:b){
-            if(set1.contains(i)){
-                set2.add(i);
-                set1.remove(i);
+            if(map.containsKey(i)){
+                set.add(i);
             }
         }
-        return set2.size();
+        return set.size();
     }
 };
