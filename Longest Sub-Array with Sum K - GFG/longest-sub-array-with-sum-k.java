@@ -53,33 +53,33 @@ class Solution{
     // Function for finding maximum and value pair
     public static int lenOfLongSubarr (int A[], int N, int k) {
         //Complete the function
-        HashMap<Integer,Integer> map = new HashMap<>();
-        int currsum = 0;
-        int len_arr = 0;
-        
         int start = 0;
         int end = -1;
-        
-        for(int i = 0 ; i < N;i++){
-            currsum+=A[i];
+        int len = 0;
+        int currsum =0;
+        HashMap<Integer , Integer> map = new HashMap<>();
+        for(int i = 0 ;i < N;i++){
+            currsum += A[i];
             if(currsum == k){
                 start = 0;
                 end = i;
-                len_arr = Math.max( end - start+1 , len_arr);
+                len = Math.max(end-start+1 , len);
             }
             if(map.containsKey(currsum - k)){
-                start = map.get(currsum-k)+1;
+                start = map.getOrDefault(currsum-k , 0) + 1;
                 end = i;
-                len_arr = Math.max( end - start +1, len_arr);
+                len = Math.max(end - start +1 , len);
             }
+             //if we get two same keys with different values
             if(map.containsKey(currsum)){
-                //if we get two same keys with different values
-            map.getOrDefault(currsum,0);}
-            else{
-            map.put(currsum,i);
+                map.getOrDefault(currsum ,0);
+            }else{
+                map.put(currsum , i);
             }
+            
         }
-        return len_arr;
+        return len;
+
     }
     
     
