@@ -72,7 +72,8 @@ class Solution{
             }
              //if we get two same keys with different values
             if(map.containsKey(currsum)){
-                map.getOrDefault(currsum ,0);
+               // map.getOrDefault(currsum ,0);
+               int ik = 0;
             }else{
                 map.put(currsum , i);
             }
