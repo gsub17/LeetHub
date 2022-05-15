@@ -1,33 +1,22 @@
 class Solution {
     public int trap(int[] height) {
-        
-        // left max aux array
-        int[] left_max_aux_array = new int[height.length];
-        left_max_aux_array[0] = height[0];
-        for(int i = 1 ; i < height.length ;i++){
-            if(left_max_aux_array[i-1] > height[i]){
-                left_max_aux_array[i] = left_max_aux_array[i-1];
-            }else{
-                left_max_aux_array[i] = height[i];
-            }
-        }
-        // right max aux array
-        int[] right_max = new int[height.length];
-        right_max[height.length - 1] = height[height.length -1];
-        for(int i = height.length - 2 ; i >= 0 ; i--){
-            if(right_max[i+1] > height[i]){
-                right_max[i] = right_max[i+1];
-            }else{
-                right_max[i] = height[i];
-            }
+        int n = height.length;
+        int[] left_aux = new int[n];
+        left_aux[0] = height[0];
+        for(int i = 1 ; i < n ; i++){
+            left_aux[i] = Math.max(left_aux[i-1] , height[i]);
         }
         
-        int total_water = 0;
-        for(int i = 0 ; i < height.length ; i++){
-            int water = Math.min(left_max_aux_array[i] , right_max[i]) - height[i];
-            total_water += water;
+        int[] right_aux = new int[n];
+        right_aux[n-1] = height[n-1];
+         for(int i = n-2 ; i >= 0 ; i--){
+            right_aux[i] = Math.max(right_aux[i+1] , height[i]);
         }
         
-        return total_water;
+        int water = 0;
+        for(int i = 0 ; i < n;i++){
+            water+= (Math.min(left_aux[i],right_aux[i]) - height[i]);
+        }
+        return water;
     }
 }
