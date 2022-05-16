@@ -38,13 +38,19 @@ class Solution
     public static void insertHeap(int x)
     {
         // add your code here
-        if(!min_heap.isEmpty() && min_heap.peek() < x){
-            min_heap.add(x);
-             balanceHeaps();
-        }else{
+        // if(!max_heap.isEmpty() && max_heap.peek() > x){
+        //     max_heap.add(x);
+        //      balanceHeaps();
+        // }else{
+        //     min_heap.add(x);
+        //      balanceHeaps();
+        // }
+         if(max_heap.isEmpty() || max_heap.peek() >= x){
             max_heap.add(x);
-             balanceHeaps();
+        }else{
+            min_heap.add(x);
         }
+        balanceHeaps();
        
     }
     
@@ -65,10 +71,11 @@ class Solution
         // add your code here
         if(max_heap.size() == min_heap.size()){
             return (double)(max_heap.peek() + min_heap.peek())/2;
+        
         } else if(min_heap.size()<max_heap.size())
           return (double)(max_heap.peek());
-       else
-          return Double.valueOf(min_heap.peek());
+      else
+          return (double)(min_heap.peek());
       
     }
     
