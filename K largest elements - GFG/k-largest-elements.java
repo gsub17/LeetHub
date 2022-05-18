@@ -43,15 +43,11 @@ class Solution
     {
         // code here 
         ArrayList<Integer> ans = new ArrayList<>();
-        PriorityQueue<Integer> pq =  new PriorityQueue<>();
-        
-        // making min heap of size k
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         for(int i = 0 ; i < k ;i++){
             pq.add(arr[i]);
         }
-        
-        // comparing and using the property of min heap
-        for(int i = k ;i < n;i++){
+        for(int i = k ; i < n ;i++){
             if(pq.peek() < arr[i]){
                 pq.poll();
                 pq.add(arr[i]);
@@ -64,6 +60,5 @@ class Solution
         }
         Collections.reverse(ans);
         return ans;
-        
     }
 }
