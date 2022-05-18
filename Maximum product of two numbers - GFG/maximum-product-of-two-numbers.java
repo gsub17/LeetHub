@@ -37,13 +37,10 @@ class Solution {
     int maxProduct(int arr[], int n) {
         // code here
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        for(int i = 0 ; i < n ;i++){
+        for(int i = 0 ; i < arr.length ;i++){
             pq.add(arr[i]);
         }
-     //   System.out.println(pq.toString());
-        int x = pq.peek();
-        pq.poll();
-        int y = pq.peek();
-        return x*y;
+        
+        return pq.poll() * pq.poll();
     }
 }
