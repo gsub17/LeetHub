@@ -30,11 +30,6 @@ class Solution {
             
         }
         result*=count;
-        
-        if(result>2147483647){
-            return 0;
-        }
-        
         return result;
     }
 }
