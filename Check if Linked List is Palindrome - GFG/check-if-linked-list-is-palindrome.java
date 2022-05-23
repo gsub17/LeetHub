@@ -105,23 +105,26 @@ class Solution
         if(head == null){
             return true;
         }
-        if(head.next == null) return true;
+        
+         if(head.next == null) return true;
         Node mid = middle(head);
-        Node last = reverse(mid);
+        Node rev = reverse(mid);
+        
         Node curr = head;
-        while(last != null && curr != null){
-            if(last.data != curr.data){
+        while(curr != null && rev != null){
+            if(curr.data != rev.data){
                 return false;
             }
-            last = last.next;
             curr = curr.next;
+            rev = rev.next;
         }
         return true;
-    }    
+    }
     
-    Node reverse(Node m){
-        Node curr = m;
+    Node reverse(Node x){
+        Node curr = x;
         Node prev = null;
+        
         while(curr != null){
             Node temp = curr.next;
             curr.next = prev;
@@ -129,15 +132,19 @@ class Solution
             curr = temp;
         }
         return prev;
+    
     }
     
-    Node middle(Node m){
-        Node fast = m;
-        Node slow = m;
+    Node middle(Node x){
+        // we will use slow and fast pointer to find the mid
+        Node slow = x;
+        Node fast = x;
+        
         while(fast != null && fast.next != null){
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
+        
         return slow;
     }
 }
