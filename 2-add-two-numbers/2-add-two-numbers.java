@@ -10,24 +10,29 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode ans = new ListNode(0); // we are adding zero to insert an element in the listnode ans along with its creation
-        ListNode p = l1;
-        ListNode q = l2;
-        ListNode curr = ans;
+        ListNode ans = new ListNode(0);
+        ListNode temp = ans;
+        int sum = 0;
         int carry = 0;
-        while(p != null || q != null){
-            int x = (p != null ) ? p.val : 0;
-            int y = (q != null) ? q.val : 0;
-            int sum = carry + x + y;
-            carry = sum/10;
-            curr.next = new ListNode(sum%10);
-            curr = curr.next;
+        
+        ListNode curr1 = l1;
+        ListNode curr2 = l2;
+        
+        while(curr1 != null || curr2 != null){
+            int x = (curr1 != null) ? curr1.val : 0;
+            int y = (curr2 != null) ? curr2.val : 0;
             
-            if(p != null )p = p.next;
-            if(q != null) q = q.next;
+            sum = ((x+y) + carry);
+            carry = (sum)/10;
+            
+            temp.next = new ListNode(sum%10);
+            curr1 = (curr1 != null) ? curr1.next : null;
+            curr2 = (curr2 != null) ? curr2.next : null;
+            temp = temp.next;
+            
         }
         if(carry > 0){
-            curr.next = new ListNode(carry);
+            temp.next = new ListNode(carry);
         }
         return ans.next;
     }
