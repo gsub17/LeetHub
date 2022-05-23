@@ -109,16 +109,16 @@ class Solution
     public static void removeLoop(Node head){
         // code here
         // remove the loop without losing any nodes
-           HashSet<Node> set=new HashSet<>();
-           Node temp=head;
-           while(temp.next!=null){
-               set.add(temp);
-               if(set.contains(temp.next))
-             {
-             temp.next=null;
-             return;
-             }
-             temp=temp.next;
-           }
+        HashSet<Node> set = new HashSet<>();
+        Node curr = head;
+        
+        while(curr != null){
+            if(set.contains(curr.next)){
+                curr.next = null;
+            }else{
+                set.add(curr);
+                curr = curr.next;
+            }
+        }
     }
 }
