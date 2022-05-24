@@ -102,8 +102,8 @@ class Solution{
         if(carry > 0){
             temp.next = new Node(carry);
         }
-        ans  = ans.next;
-        ans = reverse(ans);
+        
+        ans = reverse(ans.next);
         return ans;
     }
     
