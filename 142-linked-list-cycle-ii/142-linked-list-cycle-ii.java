@@ -1,4 +1,3 @@
-import java.util.*;
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -12,11 +11,12 @@ import java.util.*;
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
+        HashSet<ListNode> set = new HashSet<>();
         ListNode curr = head;
-        HashSet<ListNode> set =new  HashSet<>();
+        
         while(curr != null){
             if(set.contains(curr.next)){
-                break;
+               break;
             }else{
                 set.add(curr);
                 curr = curr.next;
@@ -25,7 +25,7 @@ public class Solution {
         if(curr != null && curr.next != null){
             return curr.next;
         }
-        
         return null;
+     
     }
 }
