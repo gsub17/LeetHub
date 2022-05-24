@@ -42,7 +42,7 @@ class Solution {
         
         while(original != null){
             original.next = original.next.next;
-            copy.next = (copy.next != null) ? copy.next.next : copy.next;
+            copy.next = (copy.next != null) ? copy.next.next : null;
             copy = copy.next;
             original = original.next;
         }
