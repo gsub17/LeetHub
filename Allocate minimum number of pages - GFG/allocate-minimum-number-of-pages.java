@@ -36,40 +36,42 @@ class Solution
     public static int findPages(int[]A,int N,int M)
     {
         //Your code here
-        int min = 0;
         int max = 0;
-        for(int i = 0 ; i < N ; i++){
+        int min = 0;
+        
+        for(int i = 0 ; i < N ;i++){
+            min = Math.max(min , A[i]);
             max+= A[i];
-            min = Math.max(min,A[i]);
         }
-        int ans = 0;
-        while(min<=max){
-            int mid = (min+max)/2;
-            if(isFeasible(A,mid,M)){
+        int ans =0;
+        while(min <= max){
+            int mid = (min + max)/2;
+            
+            if(check(A,mid , M)){
                 ans = mid;
                 max = mid - 1;
             }else{
                 min = mid+1;
             }
         }
-        
         if(ans == 0){
             return -1;
         }
         return ans;
     }
     
-    public static boolean isFeasible(int[] A,int mid , int m){
-        int sum = 0 , boy = 1;
+    public static boolean check(int[] A , int mid , int M){
+        int sum = 0 , day = 1;
         for(int i = 0 ; i < A.length ;i++){
-            if(sum+A[i] > mid){
+           
+            if(sum + A[i]> mid){
+                day++;
                 sum = A[i];
-                boy++;
             }else{
                 sum+=A[i];
             }
         }
-        if(boy <= m){
+        if(day <= M){
             return true;
         }
         return false;
