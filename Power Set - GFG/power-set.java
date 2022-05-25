@@ -33,21 +33,22 @@ class Solution
     {
         // Code here
         List<String> ans = new ArrayList<>();
-        ans = powerset(s,"",ans);
+        ans = powerset(s , "" ,ans);
         Collections.sort(ans);
         ans.remove(0);
         return ans;
     }
     
-    public List<String> powerset(String s , String e, List<String> ans){
+    public List<String> powerset(String s , String e , List<String> ans){
         if(s.length() == 0){
             ans.add(e);
             return ans;
         }
+        
         char charAt0 = s.charAt(0);
         String left = s.substring(1);
         
-        powerset(left , e+charAt0 , ans);
+        powerset(left , e + charAt0 , ans);
         powerset(left , e , ans);
         return ans;
     }
