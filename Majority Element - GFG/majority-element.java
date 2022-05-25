@@ -33,28 +33,28 @@ class Solution
     static int majorityElement(int a[], int size)
     {
         // your code here
-        int winner = a[0];
+        int major = a[0];
         int count = 1;
+        
         for(int i = 1 ; i < a.length ; i++){
             if(count == 0){
-                winner= a[i];
+                major = a[i];
                 count++;
-            }else if(a[i] == winner){
+            }else if(major == a[i]){
                 count++;
             }else{
                 count--;
             }
         }
         
-        int x = a.length/2;
         count = 0;
-        for(int  i = 0 ; i < a.length ; i++){
-            if(a[i] == winner){
+        for(int i = 0 ; i < a.length ; i++){
+            if(a[i] == major){
                 count++;
             }
         }
-        if(count > x){
-            return winner;
+        if(count > size/2){
+            return major;
         }
         return -1;
     }
