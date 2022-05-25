@@ -33,29 +33,27 @@ class Solution
 {
     ArrayList<Integer> countDistinct(int A[], int n, int k)
     {
-         HashMap<Integer , Integer> map = new HashMap<>();
-         ArrayList<Integer> ans = new ArrayList<>();
-         
-         for(int i = 0 ; i < k ;i++){
-             map.put(A[i] , map.getOrDefault(A[i] , 0)+1);
-         }
-         ans.add(map.size());
-        // System.out.println(map.toString());
-         
-         for(int i = k ;i < n;i++){
-             if(map.containsKey(A[i-k])){
-                 if(map.get(A[i-k]) > 1){
-                     map.put(A[i-k]  , map.getOrDefault(A[i-k] , 0)-1);
-                 }else{
-                     map.remove(A[i-k]);
-                 }
-             }
-             map.put(A[i] , map.getOrDefault(A[i] , 0)+1);
-         //    System.out.println(map.toString());
-             ans.add(map.size());
-         }
-         return ans;
-         
+        // code here 
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0 ; i < k ; i++){
+            map.put(A[i] , map.getOrDefault(A[i] , 0)+1);
+        }
+        //  System.out.println(map.toString());
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(map.size());
+        for(int i = k ; i < n ; i++){
+            if(map.containsKey(A[i-k])){
+                if(map.get(A[i-k]) > 1){
+                    map.put(A[i-k] , map.getOrDefault(A[i-k] , 0)-1);
+                }else{
+                    map.remove(A[i-k]);
+                }
+            }
+            map.put(A[i] , map.getOrDefault(A[i] , 0)+1);
+       //     System.out.println(map.toString());
+            ans.add(map.size());
+        }
+        return ans;
     }
 }
 
