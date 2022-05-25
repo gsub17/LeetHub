@@ -66,11 +66,11 @@ class Solution{
             }
             
             if(map.containsKey(sum - k)){
-                start = map.getOrDefault(sum-k,0)+1;
+                start = map.get(sum - k)+1;
                 end = i;
                 len = Math.max(end - start + 1 , len);
             }
-            
+            //might contains duplicate key
             if(!map.containsKey(sum)){
                 map.put(sum , i);
             }
