@@ -7,7 +7,7 @@
 
 <pre><span style="font-size:18px"><strong>Input : </strong>str = "abc"
 <strong>Output: </strong>a ab abc ac b bc c
-<strong>Explanation : </strong>There are 7 substrings that 
+<strong>Explanation : </strong>There are 7 subsequences that 
 can be formed from abc.</span>
 </pre>
 
@@ -15,7 +15,7 @@ can be formed from abc.</span>
 
 <pre><span style="font-size:18px"><strong>Input: </strong>str = "aa"
 <strong>Output: </strong>a a aa
-<strong>Explanation : </strong>There are 3 substrings that 
+<strong>Explanation : </strong>There are 3 subsequences that 
 can be formed from aa.</span>
 </pre>
 
