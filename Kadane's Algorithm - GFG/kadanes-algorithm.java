@@ -37,15 +37,17 @@ class Solution{
         
         // Your code here
         int max = arr[0];
-        int curr_max = arr[0];
-        for(int i = 1 ; i < n ; i++){
-            curr_max += arr[i];
-            if(curr_max < arr[i]){
-                curr_max = arr[i];
+        int currmax = arr[0];
+        
+        for(int i = 1 ; i < n ;i++ ){
+            currmax+=arr[i];
+            if(currmax < arr[i]){
+                currmax = arr[i];
             }
-            max = Math.max(curr_max , max);
+            max = Math.max(max , currmax);
         }
         return max;
+        
     }
     
 }
