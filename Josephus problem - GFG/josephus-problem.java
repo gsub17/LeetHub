@@ -42,7 +42,7 @@ class Solution
             return 0;
         }
         
-        return (joseph(n-1,k)+k)%n;
+        return (joseph(n-1 , k)+k)%n;
     }
 
 }
