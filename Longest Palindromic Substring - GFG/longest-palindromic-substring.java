@@ -26,7 +26,7 @@ class GFG
 class Solution{
     String longestPalindrome(String S){
         // code here
-     String ans = "";
+        String ans = "";
      int max = 0;
      //int i = 0 , max =0 , j = 0;
      
@@ -36,7 +36,7 @@ class Solution{
              int p = 0 ;
              int q = z.length()-1;
              boolean check = false;
-             while(p < q){
+             while(p <= q){
                  if(z.charAt(p) != z.charAt(q)){
                      check = true;
                      break;
