@@ -15,17 +15,12 @@ public class Solution {
         ListNode curr = head;
         
         while(curr != null){
-            if(set.contains(curr.next)){
-               break;
-            }else{
-                set.add(curr);
-                curr = curr.next;
+            if(set.contains(curr)){
+                return curr;
             }
-        }
-        if(curr != null && curr.next != null){
-            return curr.next;
+            set.add(curr);
+            curr = curr.next;
         }
         return null;
-     
     }
 }
