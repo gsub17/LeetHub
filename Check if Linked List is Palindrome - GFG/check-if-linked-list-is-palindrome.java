@@ -102,21 +102,16 @@ class Solution
     boolean isPalindrome(Node head) 
     {
         //Your code here
-        if(head == null){
-            return true;
-        }
-        
-         if(head.next == null) return true;
-        Node mid = middle(head);
+        Node mid = median(head);
         Node rev = reverse(mid);
-        
         Node curr = head;
-        while(curr != null && rev != null){
-            if(curr.data != rev.data){
+        
+        while(rev != null && curr != null){
+            if(rev.data != curr.data){
                 return false;
             }
-            curr = curr.next;
-            rev = rev.next;
+            rev = (rev.next != null) ? rev.next : null;
+            curr = (curr.next != null )? curr.next : null;
         }
         return true;
     }
@@ -128,23 +123,20 @@ class Solution
         while(curr != null){
             Node temp = curr.next;
             curr.next = prev;
-            prev = curr;
+            prev= curr;
             curr = temp;
         }
         return prev;
-    
     }
     
-    Node middle(Node x){
-        // we will use slow and fast pointer to find the mid
-        Node slow = x;
-        Node fast = x;
+    Node median(Node head){
+        Node slow = head;
+        Node fast = head;
         
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
         }
-        
         return slow;
     }
 }
