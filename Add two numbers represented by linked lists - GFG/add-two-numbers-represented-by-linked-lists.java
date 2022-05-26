@@ -81,30 +81,33 @@ class Solution{
     static Node addTwoLists(Node first, Node second){
         // code here
         // return head of sum list
-        Node n1 = reverse(first);
-        Node n2 = reverse(second);
+        Node f1 = reverse(first);
+        Node f2 = reverse(second);
+        
         Node ans = new Node(0);
-        Node temp  = ans;
-        int sum = 0;
-        int carry = 0;
-        while(n1 != null || n2 != null){
-            int x = (n1 != null) ? n1.data : 0;
-            int y = (n2 != null) ? n2.data : 0;
+        Node temp = ans;
+        
+        int sum = 0 , carry = 0;
+        
+        while(f1 != null || f2 != null){
+            int x = (f1 != null) ? f1.data : 0;
+            int y = (f2 != null) ? f2.data : 0;
             
-            sum = x+y+carry;
-            carry = sum/10;
-            temp.next = new Node(sum%10);
-            temp = temp.next;
-           
-            if(n1 != null) n1 = n1.next;
-            if(n2 != null) n2 = n2.next;
+            sum = x + y + carry;
+            carry = sum / 10;
+            
+            ans.next = new Node(sum%10);
+            f1 = (f1 != null) ? f1.next : null;
+            f2 = (f2 != null) ? f2.next : null;
+            ans = ans.next;
         }
         if(carry > 0){
-            temp.next = new Node(carry);
+            ans.next = new Node(carry);
         }
         
-        ans = reverse(ans.next);
-        return ans;
+        temp = reverse(temp.next);
+        return temp;
+        
     }
     
     static Node reverse(Node x){
