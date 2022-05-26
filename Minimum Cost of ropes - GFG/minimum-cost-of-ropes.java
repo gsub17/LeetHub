@@ -66,16 +66,14 @@ class Solution
     {
         // your code here
         PriorityQueue<Long> pq = new PriorityQueue<>();
-        for(int i = 0 ; i < n ;i++){
-            pq.add(arr[i]);
+        for(int i = 0 ; i < n ; i++){
+            pq.add((long)arr[i]);
         }
         long sum = 0;
-        int count = 0;
-        while(count < n-1){
-            long sum2 =  +pq.poll() + pq.poll();
-            pq.add(sum2);
-            sum+=sum2;
-            count++;
+        while(pq.size() != 1){
+            long x = pq.poll() + pq.poll();
+            sum += x;
+            pq.add(x);
         }
         return sum;
     }
