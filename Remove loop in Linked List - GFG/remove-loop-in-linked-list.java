@@ -111,14 +111,15 @@ class Solution
         // remove the loop without losing any nodes
         HashSet<Node> set = new HashSet<>();
         Node curr = head;
-        
         while(curr != null){
             if(set.contains(curr.next)){
-                curr.next = null;
-            }else{
-                set.add(curr);
-                curr = curr.next;
+                curr.next  = null;
+                break;
             }
+            set.add(curr);
+            curr = curr.next;
+            
         }
+        
     }
 }
