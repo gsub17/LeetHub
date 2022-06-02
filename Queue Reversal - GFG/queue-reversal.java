@@ -55,9 +55,7 @@ class GfG{
         ArrayDeque<Integer> ans = new ArrayDeque<>();
         
         while(!q.isEmpty()){
-            int a = q.peek();
-            ans.push(a);
-            q.remove();
+            ans.push(q.poll());
         }
         
         return ans;
