@@ -34,26 +34,30 @@ class Solution
     static int Search(int array[], int target)
 	{
 	    // code here
-	    int low = 0;
-	    int high = array.length-1;
-	    while(low <= high){
-	        int mid = (low+high)/2;
+	    int i = 0;
+	    int j = array.length - 1;
+	    
+	    while(i <= j){
+	        int mid = (i+j) / 2;
 	        if(array[mid] == target){
 	            return mid;
 	        }
-	        if(array[mid] > array[low]){
-	            if(array[low] <= target && target < array[mid]){
-	                high = mid -1;
+	        
+	        if(array[mid] >= array[0]){
+	            if(array[mid] > target &&  array[0] <= target){
+	                j = mid -1;
 	            }else{
-	                low = mid+1;
+	                i = mid + 1;
 	            }
 	        }else{
-	            if(array[mid] < target && array[high] >= target){
-	                low = mid+1;
+	            if(array[mid] < target && array[array.length - 1] >= target){
+	                i = mid + 1;
 	            }else{
-	                high = mid -1;
+	                j = mid - 1;
 	            }
 	        }
+	        
+	        
 	    }
 	    return -1;
 	}
