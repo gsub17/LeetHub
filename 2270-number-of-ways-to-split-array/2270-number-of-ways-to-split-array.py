@@ -1,14 +1,13 @@
 class Solution:
     def waysToSplitArray(self, nums: List[int]) -> int:
-        sum1 = sum(nums)
+        s = sum(nums)
         count = 0
-        c = 0
-        for i in range(0 , len(nums)-1,1):
-            sum1 = sum1 - nums[i]
-            c += nums[i]
-            if c>=sum1:
+        curr = 0
+        for i in range(0 , len(nums) - 1 , 1):
+            curr += nums[i]
+            temp = s - curr
+            print(curr , temp)
+            if(curr >= temp):
                 count+=1
         return count
-            
-            
         
