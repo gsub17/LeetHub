@@ -1,38 +1,38 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
-        int min = 0 , max =0;
-        for(int i:weights){
-            min = Math.max(i , min);
-            max+=i;
+        int min = 0 , max = 0;
+        for(int i = 0 ; i < weights.length ;i++){
+            min = Math.max(min , weights[i]);
+            max += weights[i];
         }
         int ans = 0;
         while(min <= max){
-            int mid = (min+max)/2;
-            if(isFeasible(weights , mid , days)){
+            int mid = (min + max)/2;
+            if(isfeasible(mid , weights , days)){
                 ans = mid;
-                max = mid -1;
+                max = mid - 1;
             }else{
-                min = mid +1;
+                min = mid + 1;
             }
         }
         return ans;
     }
     
-    public boolean isFeasible(int[] weights , int mid , int days){
+    public boolean isfeasible(int mid , int[] weights , int days){
         int sum = 0 , day = 1;
-        for(int i = 0 ; i < weights.length ;i++){
+        
+        for(int i = 0 ; i < weights.length ; i++){
             if(sum+weights[i] > mid){
-                day++;
                 sum = weights[i];
+                day++;
             }else{
                 sum+=weights[i];
             }
         }
+        
         if(day <= days){
             return true;
         }
         return false;
     }
-    
-    
 }
