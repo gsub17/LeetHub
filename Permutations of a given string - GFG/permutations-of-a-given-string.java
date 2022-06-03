@@ -43,49 +43,29 @@ class Solution {
         return ans2;
     }
     
-    // public List<String> permute(String S , int s , int e , List<String> ans){
-    //     if(s == e){
-    //         ans.add(S);
-    //         return ans;
-    //     }
-        
-    //     for(int i = s ; i <= e ; i++){
-    //         String temp1 = swap(S , s , i);
-    //         permute(temp1 , s+1 , e , ans);
-    //         String temp2 = swap(S , s , i);
-    //     }
-    //     return ans;
-    // }
-    
-     public List<String> permute(String S , int left , int right , List<String> ans){
-        if(left == right){
+    public List<String> permute(String S , int s , int e , List<String> ans){
+        if(s == e){
             ans.add(S);
             return ans;
         }
-        for(int i =left ; i <= right ; i++){
-            String s1 = swap(S,left,i);
-            permute(s1 , left+1,right,ans);
-            String s2 = swap(S,left,i);
+        
+        for(int i = s ; i <= e ; i++){
+            String temp1 = swap(S , s , i);
+            permute(temp1 , s+1 , e , ans);
+            String temp2 = swap(S , s , i);
         }
         return ans;
     }
     
-    // public String swap(String S , int i, int j){
-    //     char[] arr = S.toCharArray();
-    //     char temp = arr[i];
-    //     arr[i] = arr[j];
-    //     arr[j] = temp;
-    //     String p = String.valueOf(arr);
-    //     return p;
-    // }
-    
-     public String swap(String S , int i , int j){
-        char temp ;
+     
+    public String swap(String S , int i, int j){
         char[] arr = S.toCharArray();
-        temp = arr[i];
+        char temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
         String p = String.valueOf(arr);
         return p;
     }
+    
+    
 }
