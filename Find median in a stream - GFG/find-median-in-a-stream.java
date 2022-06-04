@@ -31,29 +31,39 @@ class GFG
 
 
 class Solution
-{   static PriorityQueue<Integer> max_heap = new PriorityQueue<>(Collections.reverseOrder());
-    static PriorityQueue<Integer> min_heap = new PriorityQueue<>();
+{
     //Function to insert heap.
+   //static PriorityQueue<Integer> max_heap;
+   //static  PriorityQueue<Integer> min_heap;
+   
+   static PriorityQueue<Integer> max_heap = new PriorityQueue<>(Collections.reverseOrder());
+    static PriorityQueue<Integer> min_heap = new PriorityQueue<>();
+        
+    
     public static void insertHeap(int x)
     {
-        // add your code here
+         
         if(max_heap.isEmpty() || max_heap.peek() > x){
             max_heap.add(x);
-        } else{
+        }else{
             min_heap.add(x);
         }
         balanceHeaps();
+        
+         
     }
     
     //Function to balance heaps.
     public static void balanceHeaps()
     {
-        if(max_heap.size() - min_heap.size() == 2){
-            min_heap.add(max_heap.poll());
-        }else if(min_heap.size() - max_heap.size() == 2){
-            max_heap.add(min_heap.poll());
-        }
-       // add your code here
+        
+      if(max_heap.size() - min_heap.size() == 2){
+          min_heap.add(max_heap.poll());
+      }else if(min_heap.size() - max_heap.size() == 2){
+          max_heap.add(min_heap.poll());
+      }
+    
+     
     }
     
     //Function to return Median.
@@ -64,9 +74,11 @@ class Solution
             return (double)(max_heap.peek() + min_heap.peek())/2;
         }else if(max_heap.size() > min_heap.size()){
             return (double)max_heap.peek();
-            
         }
-        return (double)min_heap.peek();
+        
+        return (double) min_heap.peek();
+        
+         
     }
     
 }
