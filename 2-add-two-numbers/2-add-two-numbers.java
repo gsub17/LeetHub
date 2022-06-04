@@ -14,19 +14,22 @@ class Solution {
         ListNode curr2 = l2;
         ListNode ans = new ListNode(0);
         ListNode temp = ans;
+        
         int sum = 0;
         int carry = 0;
         
         while(curr1 != null || curr2 != null){
-            int x  = (curr1 != null ) ? curr1.val : 0;
+            int x = (curr1 != null) ? curr1.val : 0;
             int y = (curr2 != null) ? curr2.val : 0;
             
-            sum = x+y+carry;
+            sum = x + y + carry;
             carry = sum/10;
             ans.next = new ListNode(sum%10);
+            ans = ans.next;
+            
             curr1 = (curr1 != null) ? curr1.next : null;
             curr2 = (curr2 != null) ? curr2.next : null;
-            ans = ans.next;
+            
         }
         if(carry > 0){
             ans.next = new ListNode(carry);
