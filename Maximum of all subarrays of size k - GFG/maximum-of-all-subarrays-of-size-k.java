@@ -55,23 +55,18 @@ class Solution
     static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
     {
         // Your code here
-        ArrayList<Integer> ans = new ArrayList<>();
-        PriorityQueue<Integer> max_heap = new PriorityQueue<>(Collections.reverseOrder());
-        
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for(int i = 0 ; i < k ; i++){
-            max_heap.add(arr[i]);
+            pq.add(arr[i]);
         }
-        ans.add(max_heap.peek());
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(pq.peek());
         
-        for(int i = k ; i < n ;i++){
-            max_heap.remove(arr[i-k]);
-            max_heap.add(arr[i]);
-            ans.add(max_heap.peek());
+        for(int i = k ; i < n ; i++){
+            pq.remove(arr[i-k]);
+            pq.add(arr[i]);
+            ans.add(pq.peek());
         }
-    
         return ans;
-        
     }
-    
-    
 }
