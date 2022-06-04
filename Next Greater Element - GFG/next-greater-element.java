@@ -34,21 +34,23 @@ class Solution
     public static long[] nextLargerElement(long[] arr, int n)
     { 
         // Your code here
-        Stack<Long> s = new Stack<>();
         long[] ans = new long[n];
-        for(int  i = n-1 ; i >= 0 ; i--){
+        int count = n -1;
+        Stack<Long> s = new Stack<>();
+        
+        for(int i = n-1 ; i >= 0 ;i--){
             while(!s.isEmpty() && s.peek() <= arr[i]){
                 s.pop();
             }
-            
             if(s.isEmpty()){
-                ans[i] = -1;
+                ans[count] = -1;
             }else{
-                ans[i] = s.peek();
+                ans[count] = s.peek();
             }
-            
             s.push(arr[i]);
+            count--;
         }
         return ans;
+        
     } 
 }
