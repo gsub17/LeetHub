@@ -44,19 +44,20 @@ class Solution
         // code here 
         ArrayList<Integer> ans = new ArrayList<>();
         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int i = 0 ; i < k ;i++){
+        
+        for(int i = 0 ; i < k ; i++){
             pq.add(arr[i]);
         }
-        for(int i = k ; i < n ;i++){
+        
+        for(int i = k ; i < n ; i++){
             if(pq.peek() < arr[i]){
-                pq.poll();
+                pq.remove();
                 pq.add(arr[i]);
             }
         }
-        int j = 0;
-        while(j <k ){
+        
+        while(!pq.isEmpty()){
             ans.add(pq.poll());
-            j++;
         }
         Collections.reverse(ans);
         return ans;
