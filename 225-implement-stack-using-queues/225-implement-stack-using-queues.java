@@ -1,21 +1,20 @@
 class MyStack {
-    
-    ArrayDeque<Integer> aq;
+    ArrayDeque<Integer> aq ;
 
     public MyStack() {
         aq = new ArrayDeque<>();
     }
     
     public void push(int x) {
-        aq.push(x);
+        aq.add(x);
     }
     
     public int pop() {
-        return aq.pop();
+        return aq.removeLast();
     }
     
     public int top() {
-        return aq.peekFirst();
+        return aq.peekLast();
     }
     
     public boolean empty() {
