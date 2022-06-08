@@ -21,35 +21,40 @@ class Solution
     public static int evaluatePostFix(String S)
     {
         // Your code here
-        // to evaluate postfix we will use stack to store operand
-        
         Stack<Integer> s = new Stack<>();
-        for(int i = 0 ; i < S.length() ; i++){
-            char c = S.charAt(i);
-            if(Character.isDigit(c)){
-                int x = c - '0';
-                s.push(x);
+        char[] arr = S.toCharArray();
+        
+        for(int i = 0 ; i < arr.length ;i++){
+            char x1 = arr[i];
+            if(Character.isDigit(x1)){
+                s.push(x1 - '0');
             }else{
-                if(c == '*'){
-                    int x2 = s.pop();
-                    int x1 = s.pop();
-                    s.push(x1 * x2);
-                }else if(c == '/'){
-                    int x2 = s.pop();
-                    int x1 = s.pop();
-                    s.push(x1 / x2);
-                }else if(c == '+'){
-                    int x2 = s.pop();
-                    int x1 = s.pop();
-                    s.push(x1 + x2);
-                }else{
-                    int x2 = s.pop();
-                    int x1 = s.pop();
-                    s.push(x1 - x2);
+                if(x1 == '+'){
+                    int x = s.pop();
+                    int y = s.pop();
+                    int z = x+y;
+                    s.push(z);
+                }else if(x1 == '-'){
+                     int x = s.pop();
+                    int y = s.pop();
+                    int z = y-x;
+                    s.push(z);
+                    
+                }else if(x1 == '/'){
+                     int x = s.pop();
+                    int y = s.pop();
+                    int z = y/x;
+                    s.push(z);
+                    
+                }else if(x1 == '*'){
+                     int x = s.pop();
+                    int y = s.pop();
+                    int z = x*y;
+                    s.push(z);
+                    
                 }
             }
         }
-        
         return s.pop();
         
     }
