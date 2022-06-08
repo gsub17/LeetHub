@@ -52,10 +52,14 @@ class GfG{
     //Function to reverse the queue.
     public Queue<Integer> rev(Queue<Integer> q){
         //add code here.
-        ArrayDeque<Integer> ans = new ArrayDeque<>();
+        Stack<Integer> s = new Stack<>();
+        while(q.size() >0){
+            s.push(q.poll());
+        }
         
-        while(!q.isEmpty()){
-            ans.push(q.poll());
+        Queue<Integer> ans = new ArrayDeque<>();
+        while(s.size() > 0){
+            ans.add(s.pop());
         }
         
         return ans;
