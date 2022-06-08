@@ -129,15 +129,14 @@ class Tree
     {
        // Your code goes here
        ArrayList<Integer> ans = new ArrayList<>();
-       postorder(root , ans);
+       LRN(root , ans);
        return ans;
     }
     
-    void postorder(Node root , ArrayList<Integer> ans){
+    void LRN(Node root , ArrayList<Integer> ans){
         if(root == null) return;
-        
-        postorder(root.left , ans);
-        postorder(root.right , ans);
+        LRN(root.left , ans);
+        LRN(root.right , ans);
         ans.add(root.data);
     }
 }
