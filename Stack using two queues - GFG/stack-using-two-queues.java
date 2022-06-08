@@ -40,27 +40,35 @@ class StackUsingQueues
 
 class Queues
 {
-    //Queue<Integer> q1 = new LinkedList<Integer>();
-    //Queue<Integer> q2 = new LinkedList<Integer>();
-    
-    ArrayDeque<Integer> aq = new ArrayDeque<>();
+    Queue<Integer> q1 = new LinkedList<Integer>();
+    Queue<Integer> q2 = new LinkedList<Integer>();
     
     //Function to push an element into stack using two queues.
     void push(int a)
     {
-	    // Your code here
-	    aq.push(a);
-	    
+	    // Your code here	
+	    q1.add(a);
     }
     
     //Function to pop an element from stack using two queues. 
     int pop()
     {
 	    // Your code here
-	    if(aq.isEmpty()){
+	    while(!q1.isEmpty() && q1.size() > 1){
+	        q2.add(q1.poll());
+	    }
+	    
+	    if(q1.isEmpty()){
 	        return -1;
 	    }
-	    return aq.pop();
+	    int ans = q1.poll();
+	    
+	    
+	    while(!q2.isEmpty()){
+	        q1.add(q2.poll());
+	    }
+	    
+	    return ans;
     }
 	
 }
