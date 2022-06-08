@@ -49,11 +49,12 @@ class Queue
 	    while(!input.isEmpty()){
 	        output.push(input.pop());
 	    }
-	    int x = output.pop();
+	    
+	    int ans = output.pop();
 	    while(!output.isEmpty()){
 	        input.push(output.pop());
 	    }
-	    return x;
+	    return ans;
 	    
     }
 	
