@@ -123,16 +123,10 @@ class Solution {
     int height(Node node) 
     {
         // code here 
-        
-        int ans = h(node);
-        return ans;
+        return max_height(node);
     }
-    
-    int h (Node x ){
-        if(x == null) return 0;
-        
-        return Math.max(h(x.left) , h(x.right))+1;
+    int max_height(Node node){
+        if(node == null) return 0;
+        return Math.max(max_height(node.right) , max_height(node.left))+1;
     }
-    
-    
 }
