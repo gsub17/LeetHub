@@ -126,16 +126,15 @@ class BinaryTree
     {
         // Code here
         ArrayList<Integer> ans = new ArrayList<>();
-        Preorder(root , ans);
+        NLR(root , ans);
         return ans;
     }
     
-    static void Preorder(Node root , ArrayList<Integer> ans){
-        if(root == null) return;
+    static void NLR(Node root , ArrayList<Integer> ans){
+        if(root == null) return ;
         ans.add(root.data);
-        Preorder(root.left , ans);
-        Preorder(root.right , ans);
-        
+        NLR(root.left , ans);
+        NLR(root.right , ans);
     }
 
 }
