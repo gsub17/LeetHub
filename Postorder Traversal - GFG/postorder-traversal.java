@@ -135,8 +135,9 @@ class Tree
     
     void LRN(Node root , ArrayList<Integer> ans){
         if(root == null) return;
-        LRN(root.left , ans);
+        LRN(root.left, ans );
         LRN(root.right , ans);
         ans.add(root.data);
+        return;
     }
 }
