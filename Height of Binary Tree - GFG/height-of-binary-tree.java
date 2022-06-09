@@ -124,9 +124,11 @@ class Solution {
     {
         // code here 
         return max_height(node);
+        
     }
+    
     int max_height(Node node){
         if(node == null) return 0;
-        return Math.max(max_height(node.right) , max_height(node.left))+1;
+        return Math.max(max_height(node.left) , max_height(node.right))+1;
     }
 }
