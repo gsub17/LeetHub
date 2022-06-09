@@ -46,22 +46,24 @@ class Queue
     int dequeue()
     {
 	    // Your code here
+	    if(input.isEmpty()){
+	        return -1;
+	    }
 	    while(!input.isEmpty()){
 	        output.push(input.pop());
 	    }
-	    
 	    int ans = output.pop();
+	    
 	    while(!output.isEmpty()){
 	        input.push(output.pop());
 	    }
 	    return ans;
-	    
     }
 	
     /* The method push to push element into the stack */
     void enqueue(int x)
     {
-	    // Your code here
+	    // Your code here	
 	    input.push(x);
     }
 }
