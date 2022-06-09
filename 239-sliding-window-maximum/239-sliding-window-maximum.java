@@ -1,41 +1,42 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        ArrayDeque<Integer> dq = new ArrayDeque<>();
-        for(int i = 0 ; i <k ;i++){
-            
-            while(!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]){
-                dq.removeLast();
+        ArrayDeque<Integer> aq = new ArrayDeque<>();
+        for(int i = 0 ; i < k ;i++){
+            while(!aq.isEmpty() && nums[aq.peekLast()] <= nums[i]){
+                aq.removeLast();
             }
-            
-            dq.addLast(i);
+            aq.addLast(i);
         }
         
-        ArrayList<Integer> ans1 = new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
         
         for(int i = k ; i < nums.length ; i++){
             
-            ans1.add(nums[dq.peekFirst()]);
+            ans.add(nums[aq.peekFirst()]);
             
-            while(!dq.isEmpty() && dq.peek() <= i-k){
-                dq.removeFirst();
+            while(!aq.isEmpty() && aq.peekFirst() <= i-k){
+                aq.removeFirst();
             }
             
-            while(!dq.isEmpty() && nums[i] >= nums[dq.peekLast()]){
-                dq.removeLast();
+              while(!aq.isEmpty() && nums[aq.peekLast()] <= nums[i]){
+                aq.removeLast();
             }
+            aq.addLast(i);
             
-            dq.addLast(i);
             
         }
-        ans1.add(nums[dq.peekFirst()]);
         
-        int[] ans2 = new int[ans1.size()];
+        ans.add(nums[aq.peekFirst()]);
+
+        
+        int[] ans2 = new int[ans.size()];
         int count = 0;
-        
-        for(int a : ans1){
+        for(int a:ans){
             ans2[count] = a;
             count++;
         }
+        
         return ans2;
+        
     }
 }
