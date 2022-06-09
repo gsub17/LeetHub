@@ -54,21 +54,22 @@ class Queues
     int pop()
     {
 	    // Your code here
-	    while(!q1.isEmpty() && q1.size() > 1){
-	        q2.add(q1.poll());
-	    }
 	    
 	    if(q1.isEmpty()){
 	        return -1;
 	    }
-	    int ans = q1.poll();
+	    while(!q1.isEmpty() && q1.size() > 1){
+	        q2.add(q1.poll());
+	    }
 	    
+	    int ans = q1.poll();
 	    
 	    while(!q2.isEmpty()){
 	        q1.add(q2.poll());
 	    }
 	    
 	    return ans;
+	    
     }
 	
 }
