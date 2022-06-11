@@ -20,8 +20,8 @@ class Solution {
     
     public int min_height(TreeNode root){
         if(root == null) return 0;
-        if(root.left == null && root.right != null )return min_height(root.right) +1;
-        if(root.left != null && root.right == null) return min_height(root.left)+1;
+        if(root.left == null && root.right != null) return min_height(root.right)+1;
+        if(root.right == null && root.left != null) return min_height(root.left)+1;
         return Math.min(min_height(root.left) , min_height(root.right))+1;
     }
 }
