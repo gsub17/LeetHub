@@ -117,21 +117,16 @@ class Solution{
         ans = new ArrayList<>();
         inorder(root , ans);
         return Collections.max(ans);
-        
     }
     public static int findMin(Node root){
         //code here
         return Collections.min(ans);
     }
     
-    public static void inorder(Node x , ArrayList<Integer> ans){
-        if ( x== null) return;
-        
-        inorder(x.left , ans);
-        ans.add(x.data);
-        inorder(x.right , ans);
-        return;
+    public static void inorder(Node root , ArrayList<Integer> ans){
+        if(root == null) return;
+        inorder(root.left , ans);
+        ans.add(root.data);
+        inorder(root.right , ans);
     }
-    
-    
 }
