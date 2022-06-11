@@ -113,17 +113,15 @@ class Tree
 	public static int getSize(Node root)
 	{
 //add Code here.
-     ArrayList<Integer> ans = new ArrayList<>();
-     inorder(root , ans);
-     return ans.size();
+    ArrayList<Integer> ans = new ArrayList<>();
+    inorder(root , ans);
+    return ans.size();
     }
     
-    public static void inorder(Node x , ArrayList<Integer> ans){
-        if(x == null) return;
-        
-        inorder(x.left , ans);
-        ans.add(x.data);
-        inorder(x.right , ans);
-        return;
+    public static void inorder(Node root , ArrayList<Integer> ans){
+        if(root == null) return;
+        inorder(root.left , ans);
+        ans.add(root.data);
+        inorder(root.right , ans);
     }
 }
