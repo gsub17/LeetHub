@@ -130,8 +130,8 @@ class Solution
     {
         // Your code here
         Queue<Node> q = new LinkedList<>();
-        ArrayList<Integer> ans = new ArrayList<>();
         q.add(node);
+        ArrayList<Integer> ans = new ArrayList<>();
         
         while(!q.isEmpty()){
             Node curr = q.poll();
@@ -147,7 +147,10 @@ class Solution
         }
         return ans;
     }
-}
+    
+    
+    }
+
 
 
 
