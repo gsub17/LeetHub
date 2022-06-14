@@ -15,17 +15,18 @@
  */
 class Solution {
     public int findBottomLeftValue(TreeNode root) {
-        ArrayList<Integer> ans1 = new ArrayList<>();
-        leftview(root , ans1 , 0);
-        int index = ans1.size();
-        return ans1.get(index-1);
+        ArrayList<Integer> ans = new ArrayList<>();
+        left_view(root , ans , 0);
+        return ans.get(ans.size()-1);
     }
     
-    public void leftview(TreeNode root , ArrayList<Integer> ans , int level){
+   public void left_view(TreeNode root , ArrayList<Integer> ans , int level){
         if(root == null) return;
-        if(level == ans.size()) ans.add(root.val);
         
-        leftview(root.left , ans , level+1);
-        leftview(root.right , ans , level+1);
+        if(ans.size() == level) ans.add(root.val);
+        
+        left_view(root.left , ans , level+1);
+        left_view(root.right , ans , level+1);
+        
     }
 }
