@@ -129,9 +129,9 @@ class Solution
     static ArrayList <Integer> levelOrder(Node node) 
     {
         // Your code here
+        ArrayList<Integer> ans = new ArrayList<>();
         Queue<Node> q = new LinkedList<>();
         q.add(node);
-        ArrayList<Integer> ans = new ArrayList<>();
         
         while(!q.isEmpty()){
             Node curr = q.poll();
@@ -147,10 +147,7 @@ class Solution
         }
         return ans;
     }
-    
-    
-    }
-
+}
 
 
 
