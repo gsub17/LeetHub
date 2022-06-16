@@ -124,9 +124,12 @@ class Solution{
     }
     
     public static void inorder(Node root , ArrayList<Integer> ans){
-        if(root == null) return;
+        if(root == null) return ;
         inorder(root.left , ans);
         ans.add(root.data);
         inorder(root.right , ans);
+        return;
     }
+    
+    
 }
