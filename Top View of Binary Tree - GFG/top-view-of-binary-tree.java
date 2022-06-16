@@ -130,42 +130,45 @@ class Solution
     static ArrayList<Integer> topView(Node root)
     {
         // add your code
-        Queue<Pair> q = new ArrayDeque<>();
+        Queue<Pair> q =new ArrayDeque<>();
         Map<Integer , Integer> map = new TreeMap<>();
         q.add(new Pair(0 , root));
+        ArrayList<Integer> ans = new ArrayList<>();
         
         while(!q.isEmpty()){
-            
             Pair curr = q.poll();
+            
             if(!map.containsKey(curr.hd)){
-                map.put(curr.hd , curr.node.data);
+                map.put(curr.hd , curr.root.data);
             }
             
-            if(curr.node.left != null){
-                q.add(new Pair(curr.hd-1,curr.node.left));
+            if(curr.root.left != null){
+                q.add(new Pair(curr.hd -1 , curr.root.left));
             }
             
-            if(curr.node.right != null){
-                q.add(new Pair(curr.hd+1,curr.node.right));
+             if(curr.root.right != null){
+                q.add(new Pair(curr.hd +1 , curr.root.right));
             }
-        
+            
+            
         }
         
-        ArrayList<Integer> ans = new ArrayList<>();
-        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+        for(Map.Entry <Integer , Integer> entry: map.entrySet()){
             ans.add(entry.getValue());
         }
         
         return ans;
+        
+        
     }
     
     static class Pair{
         int hd;
-        Node node;
+        Node root;
         
-        public  Pair(int hd ,Node node){
+        public  Pair(int hd ,Node  root){
             this.hd = hd;
-            this.node = node;
+            this.root = root;
         }
     }
 }
