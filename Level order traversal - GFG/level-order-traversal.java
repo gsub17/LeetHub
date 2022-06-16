@@ -135,9 +135,9 @@ class Solution
         
         while(!q.isEmpty()){
             Node curr = q.poll();
-            ans.add(curr.data);
             
-            if(curr.left != null){
+            ans.add(curr.data);
+            if(curr.left != null) {
                 q.add(curr.left);
             }
             
