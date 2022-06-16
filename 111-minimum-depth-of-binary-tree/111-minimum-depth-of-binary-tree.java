@@ -15,7 +15,9 @@
  */
 class Solution {
     public int minDepth(TreeNode root) {
-        return min_height(root);
+        int x = min_height(root);
+        return x;
+        
     }
     
     public int min_height(TreeNode root){
