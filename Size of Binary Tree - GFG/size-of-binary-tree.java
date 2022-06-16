@@ -123,5 +123,6 @@ class Tree
         inorder(root.left , ans);
         ans.add(root.data);
         inorder(root.right , ans);
+        return;
     }
 }
