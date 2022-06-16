@@ -118,16 +118,19 @@ class Solution {
     // Function to return the diameter of a Binary Tree.
     int ans = 0;
     int diameter(Node root) {
-        // Your code her
-        height(root);
+        // Your code here
+        d(root);
         return ans;
     }
     
-    int height(Node root){
-        if(root == null) return 0;
-        int ld = height(root.left );
-        int rd = height(root.right);
-        ans = Math.max(ans , ld+rd+1);
-        return Math.max(ld,rd)+1;
+    int d(Node root){
+        if(root == null)return 0;
+        
+        int ld = d(root.left);
+        int rd = d(root.right);
+        
+        ans =Math.max(ans , ld+rd+1);
+        
+        return Math.max(ld,rd)+1; 
     }
 }
