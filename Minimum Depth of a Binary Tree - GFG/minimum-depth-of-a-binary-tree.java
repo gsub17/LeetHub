@@ -126,9 +126,8 @@ class Solution
 	int minDepth(Node root)
 	{
 	    //code here
-	    int ans = 0;
-	    ans = min_height(root);
-	    return ans;
+	    int x = min_height(root);
+	    return x;
 	}
 	
 	int min_height(Node root){
@@ -137,7 +136,5 @@ class Solution
 	    if(root.right == null && root.left != null) return min_height(root.left)+1;
 	    return Math.min(min_height(root.left) , min_height(root.right))+1;
 	}
-	
-	
 }
 
