@@ -37,6 +37,7 @@ class Solution
         Collections.sort(ans);
         ans.remove(0);
         return ans;
+        
     }
     
     public List<String> powerset(String s , String e , List<String> ans){
@@ -44,11 +45,10 @@ class Solution
             ans.add(e);
             return ans;
         }
-        
         char charAt0 = s.charAt(0);
         String left = s.substring(1);
         
-        powerset(left , e + charAt0 , ans);
+        powerset(left , e+charAt0 , ans);
         powerset(left , e , ans);
         return ans;
     }
