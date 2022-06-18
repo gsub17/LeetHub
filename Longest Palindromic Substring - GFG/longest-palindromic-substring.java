@@ -27,30 +27,31 @@ class Solution{
     String longestPalindrome(String S){
         // code here
         int max = 0;
-        String ans = "";
-        
+        String result = "";
+        ArrayList<String> ans = new ArrayList<>();
         for(int i = 0 ; i < S.length() ; i++){
             for(int j = i+1 ; j <= S.length() ; j++){
-                String temp = S.substring(i , j);
-                int p = 0;
-                int q = temp.length()-1;
+                String temp = S.substring(i,j);
+                int x = 0;
+                int y = temp.length()-1;
                 boolean check = true;
-                while(p < q){
-                    if(temp.charAt(p) != temp.charAt(q)){
+                while(x < y){
+                    if(temp.charAt(x) != temp.charAt(y)){
                         check = false;
                         break;
                     }
-                    p++;
-                    q--;
+                    x++;
+                    y--;
                 }
                 if(check){
-                    if(max < temp.length()){
-                        ans = temp;
-                        max = temp.length();
+                    int prev = max;
+                    max = Math.max(max , temp.length());
+                    if(max != prev){
+                        result = temp;
                     }
                 }
             }
         }
-        return ans;
+        return result;
     }
 }
