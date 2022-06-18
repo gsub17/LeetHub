@@ -30,7 +30,7 @@ class Solution {
     public List<String> find_permutation(String S) {
         // Code here
         List<String> ans = new ArrayList<>();
-        ans = permute(S , 0 , S.length() - 1 , ans);
+        ans = permute(S , 0 , S.length() -1 , ans);
         HashSet<String> set = new HashSet<>();
         for(String a:ans){
             set.add(a);
@@ -49,16 +49,16 @@ class Solution {
             return ans;
         }
         
-        for(int i = s ; i <= e ; i++){
-            String temp1 = swap(S , s , i);
-            permute(temp1 , s+1 , e , ans);
-            String temp2 = swap(S , s , i);
+        for(int i = s ; i <= e ;i++){
+            String l1 = swap(S , s , i);
+            permute(l1 , s+1 , e , ans);
+            String l2 = swap(S , s , i);
         }
         return ans;
+        
     }
     
-     
-    public String swap(String S , int i, int j){
+    public String swap(String S , int i , int j){
         char[] arr = S.toCharArray();
         char temp = arr[i];
         arr[i] = arr[j];
@@ -66,6 +66,4 @@ class Solution {
         String p = String.valueOf(arr);
         return p;
     }
-    
-    
 }
