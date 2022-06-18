@@ -1,45 +1,34 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        ans = permutation(nums , 0 , nums.length-1,ans);
-      //  Collections.sort(ans);
-        HashSet<List<Integer>> set = new HashSet<>();
-        for(List<Integer> a:ans){
-            set.add(a);
-        }
-        
-        List<List<Integer>> ans2 = new ArrayList<List<Integer>>();
-        for(List<Integer> b:set){
-            ans2.add(b);
-        }
-        return ans2;
-        
-        
+        List<List<Integer>> ans1 = new ArrayList<List<Integer>>();
+        ans1 = p(nums , 0 , nums.length-1 , ans1);
+        return ans1;
     }
     
-    public List<List<Integer>> permutation(int[] nums , int s , int e , List<List<Integer>> ans){
+    public List<List<Integer>> p(int[] nums , int s , int e , List<List<Integer>> ans1){
         if(s == e){
             List<Integer> ans2 = new ArrayList<>();
-            for(int a:nums){
-                ans2.add(a);
+            for(int i : nums){
+                ans2.add(i);
             }
-            ans.add(ans2);
-            return ans;
+            ans1.add(ans2);
+            return ans1;
         }
         
-        for(int i = 0 ; i < nums.length ; i++){
-            int[] nums1 = swap(nums , s , i);
-            permutation(nums , s+1 , e , ans);
-            int[] nums2 = swap(nums , s , i);
+        for(int i = s ; i<= e;i++){
+            int[] s1 = swap(nums , s , i);
+            p(s1 , s+1 , e , ans1);
+            int[] s2 = swap(nums , s , i);
         }
-        return ans;
+        return ans1;
     }
     
-    public int[] swap(int[] nums , int i , int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    public int[] swap(int[] nums , int x, int y){
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
         return nums;
     }
+    
+    
 }
