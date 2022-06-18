@@ -33,23 +33,24 @@ class Solution
     {
         // Code here
         List<String> ans = new ArrayList<>();
-        ans = powerset(s , "" ,ans);
+        ans = subset(s , "" , ans);
         Collections.sort(ans);
         ans.remove(0);
         return ans;
         
     }
     
-    public List<String> powerset(String s , String e , List<String> ans){
+    public List<String> subset(String s , String n , List<String> ans){
         if(s.length() == 0){
-            ans.add(e);
+            ans.add(n);
             return ans;
         }
+        
         char charAt0 = s.charAt(0);
         String left = s.substring(1);
         
-        powerset(left , e+charAt0 , ans);
-        powerset(left , e , ans);
+        subset(left , n + charAt0 , ans);
+        subset(left , n , ans);
         return ans;
     }
 }
