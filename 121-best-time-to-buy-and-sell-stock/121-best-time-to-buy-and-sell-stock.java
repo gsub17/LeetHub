@@ -1,16 +1,16 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        int n = prices.length;
-        int[] aux = new int[n];
-        aux[n-1] = prices[n-1];
-        for(int i = n-2; i >= 0 ;i--){
-            aux[i] = Math.max(aux[i+1],prices[i]);
+        int profit = 0;
+        int[] next_greater = new int[prices.length];
+        next_greater[prices.length -1] = prices[prices.length-1];
+        for(int i = prices.length -2 ; i>=0;i--){
+            next_greater[i] = Math.max(prices[i] , next_greater[i+1]);
         }
-        int max1 = 0;
-        for(int i = 0 ; i < n;i++){
-            int temp = aux[i] - prices[i];
-            max1 = Math.max(max1 , temp);
+        
+        for(int i = 0 ; i < prices.length ; i++){
+            profit = Math.max(profit , next_greater[i] - prices[i]);
         }
-        return max1;
+        return profit;
+        
     }
 }
