@@ -58,7 +58,7 @@ class Solution
         ArrayList<Integer> ans = new ArrayList<>();
         PriorityQueue<Integer> max_heap = new PriorityQueue<>(Collections.reverseOrder());
         
-        for(int i = 0 ; i < k ;i++){
+        for(int i = 0 ; i < k ; i++){
             max_heap.add(arr[i]);
         }
         ans.add(max_heap.peek());
@@ -69,5 +69,6 @@ class Solution
             ans.add(max_heap.peek());
         }
         return ans;
+        
     }
 }
