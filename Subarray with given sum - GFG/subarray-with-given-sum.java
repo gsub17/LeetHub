@@ -36,38 +36,37 @@ class Solution
     {
         // Your code here
         ArrayList<Integer> ans = new ArrayList<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int currsum = 0;
         int start = 0;
         int end = -1;
-        int sum = 0;
-        
-        HashMap<Integer , Integer> map = new HashMap<>();
         
         for(int i = 0 ; i < n ;i++){
-            sum+=arr[i];
+            currsum += arr[i];
             
-            if(sum == s){
-                start = 0;
+            if(currsum == s){
+                start = 1;
+                end = i+1;
+                ans.add(start);
+                ans.add(end);
+                return ans;
+            }
+            
+            if(map.containsKey(currsum - s)){
+                start = map.get(currsum - s) + 1;
                 end = i;
                 ans.add(start+1);
                 ans.add(end+1);
                 return ans;
             }
-            if(map.containsKey(sum - s)){
-                start = map.get(sum - s)+1;
-                end = i;
-                ans.add(start+1);
-                ans.add(end+1);
-                return ans;
+            
+            if(!map.containsKey(currsum - s)){
+                map.put(currsum , i);
             }
             
-            //if contains duplicate key
-            if(!map.containsKey(sum-s)){
-                map.put(sum , i);
-            }
             
-                    }
-                    
-            ans.add(-1);
-            return ans;
+        }
+        ans.add(-1);
+        return ans;
     }
 }
