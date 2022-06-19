@@ -102,36 +102,34 @@ class Solution
     boolean isPalindrome(Node head) 
     {
         //Your code here
-        Node mid = median(head);
+        Node mid = middle(head);
         Node rev = reverse(mid);
         Node curr = head;
         
-        while(rev != null && curr != null){
-            if(rev.data != curr.data){
+        while(curr != null && rev != null){
+            if(curr.data != rev.data){
                 return false;
             }
-            rev = (rev.next != null) ? rev.next : null;
-            curr = (curr.next != null )? curr.next : null;
+            curr = curr.next;
+            rev = rev.next;
         }
         return true;
     }
-    
-    Node reverse(Node x){
-        Node curr = x;
+    Node reverse(Node head){
+        Node curr = head;
         Node prev = null;
-        
         while(curr != null){
             Node temp = curr.next;
             curr.next = prev;
-            prev= curr;
+            prev = curr;
             curr = temp;
         }
         return prev;
     }
     
-    Node median(Node head){
+    Node middle(Node head){
         Node slow = head;
-        Node fast = head;
+        Node fast = head.next;
         
         while(fast != null && fast.next != null){
             slow = slow.next;
