@@ -36,18 +36,14 @@ public class Main {
 class Solution {
     int maxProduct(int arr[], int n) {
         // code here
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int i = 0 ; i < 2 ; i++){
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i = 0 ; i < n ;i++){
             pq.add(arr[i]);
         }
+      
+        int x = pq.poll();
+        int y = pq.poll();
         
-        for(int i = 2 ; i < n ; i++){
-            if(pq.peek() < arr[i]){
-                pq.remove();
-                pq.add(arr[i]);
-            }
-        }
-        
-        return pq.poll() * pq.poll();
+        return x * y;
     }
 }
