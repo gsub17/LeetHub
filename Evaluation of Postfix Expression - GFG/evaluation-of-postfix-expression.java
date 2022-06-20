@@ -23,39 +23,30 @@ class Solution
         // Your code here
         Stack<Integer> s = new Stack<>();
         char[] arr = S.toCharArray();
-        
-        for(int i = 0 ; i < arr.length ;i++){
-            char x1 = arr[i];
-            if(Character.isDigit(x1)){
-                s.push(x1 - '0');
-            }else{
-                if(x1 == '+'){
-                    int x = s.pop();
-                    int y = s.pop();
-                    int z = x+y;
-                    s.push(z);
-                }else if(x1 == '-'){
-                     int x = s.pop();
-                    int y = s.pop();
-                    int z = y-x;
-                    s.push(z);
-                    
-                }else if(x1 == '/'){
-                     int x = s.pop();
-                    int y = s.pop();
-                    int z = y/x;
-                    s.push(z);
-                    
-                }else if(x1 == '*'){
-                     int x = s.pop();
-                    int y = s.pop();
-                    int z = x*y;
-                    s.push(z);
-                    
+        int ans = 0;
+        for(int i = 0 ; i < S.length() ; i++){
+            if(Character.isDigit(arr[i])){
+                int z = arr[i] - '0';
+                s.push(z);
+            }else if(arr[i] == '+'){
+                int x2 = s.pop();
+                int x1 = s.pop();
+                s.push(x2+x1);
+                }else if(arr[i] == '-'){
+                    int x2 = s.pop();
+                int x1 = s.pop();
+                s.push(x1-x2);
+                }else if(arr[i] == '*'){
+                    int x2 = s.pop();
+                int x1 = s.pop();
+                s.push(x2*x1);
+                }else{
+                  int x2 = s.pop();
+                int x1 = s.pop();
+                s.push(x1/x2);  
                 }
             }
-        }
-        return s.pop();
         
+        return s.pop();
     }
 }
