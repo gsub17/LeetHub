@@ -31,31 +31,30 @@ class Solution
     {
         // your code here
         Stack<Integer> s1 = new Stack<>();
-        int[] prev_smaller = new int[hist.length];
-        
-        for(int i = 0 ; i < hist.length ; i++){
+        long[] prev_smaller = new long[hist.length];
+        prev_smaller[0] = -1;
+        s1.push(0);
+        for(int i = 1 ; i< hist.length ;i++){
             while(!s1.isEmpty() && hist[s1.peek()] >= hist[i]){
                 s1.pop();
             }
-            
             if(s1.isEmpty()){
                 prev_smaller[i] = -1;
             }else{
                 prev_smaller[i] = s1.peek();
             }
-            
             s1.push(i);
         }
         
-        
         Stack<Integer> s2 = new Stack<>();
-        int[] next_smaller = new int[hist.length];
+        long[] next_smaller = new long[hist.length];
+        next_smaller[hist.length -1 ] = hist.length;
+        s2.push(hist.length - 1);
         
-        for(int i = hist.length-1 ; i >= 0 ; i--){
+        for(int i = hist.length - 2 ; i >= 0 ;i--){
             while(!s2.isEmpty() && hist[s2.peek()] >= hist[i]){
                 s2.pop();
             }
-            
             if(s2.isEmpty()){
                 next_smaller[i] = hist.length;
             }else{
@@ -63,12 +62,12 @@ class Solution
             }
             s2.push(i);
         }
-        
-        long max = 0;
-        for(int i = 0  ; i < hist.length ;i++){
-            max = Math.max(max , (next_smaller[i] - prev_smaller[i] - 1)*hist[i]);
+       
+        long ans = 0;
+        for(int i = 0 ; i < hist.length ;i++){
+            ans = Math.max(ans , (next_smaller[i] - prev_smaller[i]-1 ) * hist[i]);
         }
-        return max;
+        return ans;
     }
         
 }
