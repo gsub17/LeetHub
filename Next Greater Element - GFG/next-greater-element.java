@@ -35,22 +35,21 @@ class Solution
     { 
         // Your code here
         long[] ans = new long[n];
-        int count = n -1;
+        ans[n-1] = -1;
         Stack<Long> s = new Stack<>();
+        s.push(arr[n-1]);
         
-        for(int i = n-1 ; i >= 0 ;i--){
+        for(int i = n-2 ; i >= 0 ;i--){
             while(!s.isEmpty() && s.peek() <= arr[i]){
                 s.pop();
             }
             if(s.isEmpty()){
-                ans[count] = -1;
+                ans[i] = -1;
             }else{
-                ans[count] = s.peek();
+                ans[i] = s.peek();
             }
             s.push(arr[i]);
-            count--;
         }
         return ans;
-        
     } 
 }
