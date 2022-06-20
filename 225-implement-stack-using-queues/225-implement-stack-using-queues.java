@@ -6,21 +6,20 @@ class MyStack {
     }
     
     public void push(int x) {
-        aq.add(x);
+        aq.push(x);
     }
     
     public int pop() {
-        return aq.removeLast();
+        return aq.removeFirst();
     }
     
     public int top() {
-        return aq.peekLast();
+        return aq.peekFirst();
     }
     
     public boolean empty() {
         if(aq.isEmpty()){
-            return true;
-        }
+            return true;}
         return false;
     }
 }
