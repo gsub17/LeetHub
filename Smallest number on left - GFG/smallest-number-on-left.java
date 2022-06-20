@@ -32,13 +32,14 @@ class Solution{
     {
         //code here
         Stack<Integer> s = new Stack<>();
-        ArrayList<Integer> ans = new ArrayList<>();
+        List<Integer> ans = new ArrayList<>();
+        ans.add(-1);
+        s.push(a[0]);
         
-        for(int i = 0 ; i < n ;i++){
+        for(int i = 1 ; i < n ;i++){
             while(!s.isEmpty() && s.peek() >= a[i]){
                 s.pop();
             }
-            
             if(s.isEmpty()){
                 ans.add(-1);
             }else{
