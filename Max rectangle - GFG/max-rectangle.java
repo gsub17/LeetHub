@@ -28,73 +28,76 @@ class FindMinCost
 
 /*Complete the function given below*/
 class Solution {
-    public int maxArea(int matrix[][], int n, int m) {
+    public int maxArea(int M[][], int n, int m) {
         // add code here.
-         int[] curr_row = matrix[0];
-        int curr_max = max_histogram(curr_row);
-   //     System.out.println(Arrays.toString(curr_row));
-   //     System.out.println(curr_max);
-        
-        for(int i = 1 ; i < matrix.length ; i++){
-            for(int j = 0 ; j < matrix[0].length ; j++){
-                
-                if(matrix[i][j] == 1){
-                    curr_row[j]+=1;
+        int[] temp = new int[m];
+        temp = M[0];
+        int ans = max_rectangle(temp);
+         for(int i = 1 ; i < n ; i++){
+            for(int  j = 0 ; j < m ;j++){
+                if(M[i][j] == 1){
+                    temp[j] +=1;
                 }else{
-                    curr_row[j] = 0;
+                    temp[j] = 0;
                 }
-            }
-       //     System.out.println(Arrays.toString(curr_row));
-            int temp = max_histogram(curr_row);
-        //    System.out.println(temp);
-            curr_max = Math.max(temp , curr_max);
             
+                
+              //  System.out.println(ans);
+            }
+            ans = Math.max(max_rectangle(temp) , ans);
         }
-        return curr_max;
+        return ans;
+        
     }
     
-     public int max_histogram(int[] heights){
-       
-        int[] prev_smaller = new int[heights.length];
+    public int max_rectangle(int[] hist){
+         int[] prev_smaller = new int[hist.length];
         Stack<Integer> s1 = new Stack<>();
-        int ans = 0;
         
-        for(int i = 0 ; i < heights.length ; i++){
-            while(!s1.isEmpty() && heights[s1.peek()] >= heights[i]){
+        int index = 0;
+        
+        for(int i = 0 ; i < hist.length ;i++){
+            while( !s1.isEmpty() && hist[s1.peek()] >=  hist[i]){
                 s1.pop();
             }
             
             if(s1.isEmpty()){
-                prev_smaller[i] = -1;
+                prev_smaller[index] = -1;
             }else{
-                prev_smaller[i] = s1.peek();
+                prev_smaller[index] = s1.peek();
             }
             
+            index++;
             s1.push(i);
-            
         }
         
-        int[] next_smaller = new int[heights.length];
+        int[] next_smaller = new int[hist.length];
         Stack<Integer> s2 = new Stack<>();
+        index = hist.length - 1;
         
-        for(int i = heights.length - 1 ; i >=0 ; i--){
-            while(!s2.isEmpty() && heights[s2.peek()] >= heights[i]){
+        for(int i = hist.length -1 ; i >= 0 ; i--){
+            while(!s2.isEmpty() && hist[s2.peek()] >= hist[i]){
                 s2.pop();
             }
             
             if(s2.isEmpty()){
-                next_smaller[i] = heights.length;
+                next_smaller[index] = hist.length;
             }else{
-                next_smaller[i] = s2.peek();
+                next_smaller[index] = s2.peek();
             }
+         //   System.out.println(next_smaller[index]);
+            index--;
             s2.push(i);
         }
         
-        for(int i = 0 ; i < heights.length ; i++){
-            int temp = (next_smaller[i] - prev_smaller[i] - 1) * heights[i];
-            ans = Math.max(ans , temp);
+     
+        long ans = 0;
+        for(int i = 0 ; i < hist.length ; i++){
+            long temp = (next_smaller[i] - prev_smaller[i] - 1)*hist[i];
+            ans = Math.max(temp , ans);
         }
-        return ans;
+        int x = (int)ans;
+        return x;
         
     }
 }
