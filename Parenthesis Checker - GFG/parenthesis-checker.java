@@ -35,30 +35,36 @@ class Driverclass
 class Solution
 {
     //Function to check if brackets are balanced or not.
-    static boolean ispar(String x)
+    static boolean ispar(String p)
     {
         // add your code here
-        int count = 0;
         Stack<Character> s = new Stack<>();
-        for(int i = 0 ; i < x.length() ; i++){
-            char c = x.charAt(i);
-            if(c == '[' || c == '{' || c == '('){
-                s.push(c);
+        char[] arr = p.toCharArray();
+        int count = 0;
+        
+        for(int i = 0 ; i < arr.length ;i++){
+            char x = arr[i];
+            if(x == '(' || x == '{' || x == '['){
+                s.push(x);
                 count++;
             }else if(!s.isEmpty()){
-                if(s.peek() == '[' && c == ']'){
+                if(s.peek() == '{' && x == '}'){
                     s.pop();
-                    count++;
-                }else if(s.peek() == '{' && c == '}'){
+                    count--;
+                }else if(s.peek() == '(' && x == ')'){
                     s.pop();
-                    count++;
-                }else if(s.peek() == '(' && c == ')'){
+                    count--;
+                }else if(s.peek() == '[' && x == ']'){
                     s.pop();
-                    count++;
+                    count--;
+                }else{
+                    count--;
                 }
+            }else{
+                return false;
             }
         }
-        if(s.isEmpty() && count == x.length()){
+        if(s.isEmpty() && count == 0){
             return true;
         }
         return false;
