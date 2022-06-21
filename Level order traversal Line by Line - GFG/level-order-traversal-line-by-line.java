@@ -128,41 +128,32 @@ class Level_Order_Traverse
     static ArrayList<ArrayList<Integer>> levelOrder(Node node) 
     {
         // Your code here
-        //ArrayList<ArrayList<Integer>> ans1 = new ArrayList<ArrayList<Integer>>();
-       ArrayList<ArrayList<Integer>> ans1 = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> ans1 = new ArrayList<ArrayList<Integer>>();
         Queue<Node> q = new LinkedList<>();
+        ArrayList<Integer> ans2 = new ArrayList<>();
         q.add(node);
         q.add(null);
         
-        ArrayList<Integer> ans2 = new ArrayList<>();
-        
         while(!q.isEmpty()){
-            Node curr = q.poll();
-            
-            if(curr == null){
+            Node temp = q.poll();
+            if(temp == null){
                 if(q.isEmpty()){
                     ans1.add(ans2);
-                    break;
+                    return ans1;
+                }else{
+                    q.add(null);
+                    ans1.add(ans2);
+                    ans2 = new ArrayList<Integer>();
                 }
-                q.add(null);
-                ans1.add(ans2);
-                ans2 = new ArrayList<>();
-                continue;
+                
+            }else{
+                ans2.add(temp.data);
+                
+                if(temp.left != null) q.add(temp.left);
+                if(temp.right != null) q.add(temp.right);
             }
-            
-            ans2.add(curr.data);
-            
-            if(curr.left != null){
-                q.add(curr.left);
-            }
-            
-            if(curr.right != null){
-                q.add(curr.right);
-            }
-            
         }
         return ans1;
-        
         
     }
 }
