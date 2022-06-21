@@ -126,8 +126,8 @@ class Solution
 	int minDepth(Node root)
 	{
 	    //code here
-	    int x = min_height(root);
-	    return x;
+	    int ans = min_height(root);
+	    return ans;
 	}
 	
 	int min_height(Node root){
