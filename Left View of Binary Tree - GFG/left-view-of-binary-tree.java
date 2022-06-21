@@ -126,19 +126,19 @@ class Tree
     {
       // Your code here
       ArrayList<Integer> ans = new ArrayList<>();
-      leftview(root , ans , 0);
+      left_view(root , 0 , ans);
       return ans;
     }
     
-    void leftview(Node root , ArrayList<Integer> ans , int level){
+    void left_view(Node root , int level , ArrayList<Integer> ans){
         if(root == null) return;
+        
         if(ans.size() == level){
             ans.add(root.data);
         }
         
-        leftview(root.left , ans , level +1);
-        leftview(root.right , ans , level +1);
+        if(root.left != null) left_view(root.left , level + 1 , ans);
+        if(root.right != null) left_view(root.right , level + 1 , ans);
         return;
-        
     }
 }
