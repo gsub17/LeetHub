@@ -134,16 +134,11 @@ class Solution
         q.add(node);
         
         while(!q.isEmpty()){
-            Node curr = q.poll();
+            Node temp = q.poll();
+            ans.add(temp.data);
             
-            ans.add(curr.data);
-            if(curr.left != null) {
-                q.add(curr.left);
-            }
-            
-            if(curr.right != null){
-                q.add(curr.right);
-            }
+            if(temp.left != null) q.add(temp.left);
+            if(temp.right != null) q.add(temp.right);
         }
         return ans;
     }
