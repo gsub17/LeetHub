@@ -132,16 +132,20 @@ class Solution{
     ArrayList<Integer> rightView(Node node) {
         //add code here.
         ArrayList<Integer> ans = new ArrayList<>();
-        right_view(node , ans , 0);
+        right_view(node , 0 , ans);
         return ans;
     }
     
-    void right_view(Node root , ArrayList<Integer> ans , int level){
-        if(root == null) return;
-        if(level == ans.size()) ans.add(root.data);
+    void right_view(Node node , int level , ArrayList<Integer> ans){
+        if(node == null) return;
         
-        right_view(root.right , ans , level+1);
-        right_view(root.left , ans  , level +1);
+        if(ans.size() == level){
+            ans.add(node.data);
+        }
+        
+        if(node.right != null) right_view(node.right , level + 1 , ans);
+        if(node.left != null)  right_view(node.left , level + 1 , ans);
+        return;
     }
 }
 
