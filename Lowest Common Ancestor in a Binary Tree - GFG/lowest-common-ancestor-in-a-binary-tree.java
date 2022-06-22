@@ -124,16 +124,18 @@ class Solution
 	Node lca(Node root, int n1,int n2)
 	{
 		// Your code here
-		if (root == null) return null;
-		if(root.data == n1 || root.data == n2) return root;
+		if(root == null) return null;
 		
-		Node left = lca(root.left , n1 , n2);
-		Node right = lca(root.right , n1 , n2);
+		if(root.data == n1 || root.data == n2){
+		    return root;
+		}
 		
-		if(left == null) return right;
-		if(right == null) return left;
+		Node l = lca(root.left , n1 , n2);
+		Node r = lca(root.right , n1 , n2);
+		
+		if(l == null) return r;
+		if(r == null) return l;
 		return root;
-		
 		
 	}
 }
