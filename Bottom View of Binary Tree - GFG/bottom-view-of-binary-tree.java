@@ -122,42 +122,40 @@ class Solution
     public ArrayList <Integer> bottomView(Node root)
     {
         // Code here
-        ArrayList<Integer> ans = new ArrayList<>();
-        Queue<Pair> q = new LinkedList<>();
-        Map<Integer , Integer> map = new TreeMap<>();
+        Queue<Pair> q = new ArrayDeque<>();
+        Map<Integer,Integer> map = new TreeMap<>();
         q.add(new Pair(0 , root));
         
         while(!q.isEmpty()){
             Pair curr = q.poll();
+         //   if(!map.containsKey(curr.hd)){
+                map.put(curr.hd , curr.node.data);
+           // }
             
-    
-            map.put(curr.hd , curr.root.data);
-            
-            if(curr.root.left != null){
-                q.add(new Pair(curr.hd -1 , curr.root.left));
-            }
-            if(curr.root.right != null){
-                q.add(new Pair(curr.hd +1 , curr.root.right));
+            if(curr.node.left != null){
+                q.add(new Pair(curr.hd-1 , curr.node.left));
             }
             
-            
+            if(curr.node.right != null){
+                q.add(new Pair(curr.hd + 1 , curr.node.right));
+            }
         }
-        
-        for(Map.Entry <Integer , Integer> entry: map.entrySet()){
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(Map.Entry <Integer,Integer> entry : map.entrySet()){
             ans.add(entry.getValue());
         }
-        return ans;
         
+        return ans;
         
     }
     
     public class Pair{
         int hd;
-        Node root;
+        Node node;
         
-        public Pair(int hd , Node root){
+        public Pair(int hd , Node node){
             this.hd = hd;
-            this.root = root;
+            this.node = node;
         }
     }
 }
