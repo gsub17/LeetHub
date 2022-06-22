@@ -17,21 +17,21 @@ class Solution {
     public boolean findTarget(TreeNode root, int k) {
         ArrayList<Integer> ans = new ArrayList<>();
         inorder(root , ans);
-        
-//         HashMap<Integer,Integer> map = new HashMap<>();
-//         for(int a:ans){
-//             map.put(a , a);
-//         }
-        if(ans.size() <= 1){
+        if(ans.size() <=1){
             return false;
         }
-        System.out.println(ans.toString());
-        for(int i = 0 ; i < ans.size()-1 ;i++){
-           for(int j = i+1 ; j < ans.size() ; j++){
-               if(ans.get(i) + ans.get(j) == k){
-                   return true;
-               }
-           }
+        int i = 0 ;
+        int j = ans.size()-1;
+        while(i < j){
+            if(ans.get(i) + ans.get(j) == k){
+                return true;
+            }
+            if(ans.get(i) + ans.get(j) > k){
+                j--;
+            }else{
+                i++;
+            }
+        
         }
         return false;
     }
