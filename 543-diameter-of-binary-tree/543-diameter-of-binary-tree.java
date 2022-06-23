@@ -21,7 +21,8 @@ class Solution {
     }
     
     public int diameter(TreeNode root){
-        if(root == null)return 0;
+        if(root == null) return 0;
+        
         int ld = diameter(root.left);
         int rd = diameter(root.right);
         
