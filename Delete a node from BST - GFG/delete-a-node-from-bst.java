@@ -113,29 +113,31 @@ class Tree {
         // code here.
         if(root == null) return null;
         
-        if(X < root.data){
+        if(root.data > X){
             root.left = deleteNode(root.left , X);
-        }else if(X > root.data){
+        }else if(root.data < X){
             root.right = deleteNode(root.right , X);
         }else{
-            if(root.right == null){
-                return root.left;
-            }else if(root.left == null){
+            if(root.left == null){
                 return root.right;
+            }else if(root.right == null){
+                return root.left;
             }
             
             root.data = minValue(root.right);
-            root.right = deleteNode(root.right , root.data);
+        root.right = deleteNode(root.right , root.data);
+        
         }
         return root;
+        
     }
     
     public static int minValue(Node root){
-        int minv = root.data;
+        int p = root.data;
         while(root.left != null){
-            minv = root.left.data;
+            p = root.left.data;
             root = root.left;
         }
-        return minv;
+        return p;
     }
 }
