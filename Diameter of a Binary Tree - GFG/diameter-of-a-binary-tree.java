@@ -124,11 +124,10 @@ class Solution {
     }
     
     int d(Node root){
-        if (root == null) return 0;
+        if(root == null) return 0;
         int ld = d(root.left);
         int rd = d(root.right);
-        
-        ans = Math.max(ld+rd+1 , ans);
-        return Math.max(rd,ld)+1;
+        ans = Math.max(ans,ld+rd+1);
+        return Math.max(ld,rd)+1;
     }
 }
