@@ -131,21 +131,23 @@ class Solution{
     //Function to return list containing elements of right view of binary tree.
     ArrayList<Integer> rightView(Node node) {
         //add code here.
-        ArrayList<Integer> ans = new ArrayList<>();
-        right_view(node , 0 , ans);
+        ArrayList<Integer> ans  = new ArrayList<>();
+        right_view(node , ans , 0);
         return ans;
     }
     
-    void right_view(Node node , int level , ArrayList<Integer> ans){
-        if(node == null) return;
+   void  right_view(Node node , ArrayList<Integer> ans , int level){
+        if(node == null){
+            return;
+        }
         
         if(ans.size() == level){
             ans.add(node.data);
         }
         
-        if(node.right != null) right_view(node.right , level + 1 , ans);
-        if(node.left != null)  right_view(node.left , level + 1 , ans);
-        return;
+        if(node.right != null) right_view(node.right , ans , level +1);
+        if(node.left != null) right_view(node.left , ans , level +1);
+        return ;
     }
 }
 
