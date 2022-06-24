@@ -130,10 +130,10 @@ class Solution
     static ArrayList<Integer> topView(Node root)
     {
         // add your code
-        Queue<Pair> q = new ArrayDeque<>();
-        Map<Integer, Integer> map = new TreeMap<>();
+        Queue<Pair> q = new LinkedList<>();
+        Map<Integer,Integer> map = new TreeMap<>();
+        q.add(new Pair(0 , root));
         
-        q.add(new Pair(0,root));
         while(!q.isEmpty()){
             Pair curr = q.poll();
             
@@ -142,18 +142,18 @@ class Solution
             }
             
             if(curr.node.left != null) q.add(new Pair(curr.hd -1 , curr.node.left));
-            if(curr.node.right != null) q.add(new Pair(curr.hd +1 , curr.node.right));
+            if(curr.node.right != null) q.add(new Pair(curr.hd + 1 , curr.node.right));
         }
         
         ArrayList<Integer> ans = new ArrayList<>();
-        for(Map.Entry <Integer,Integer> entry:map.entrySet()){
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
             ans.add(entry.getValue());
         }
         return ans;
         
     }
     
-    static class Pair{
+    public static  class Pair{
         int hd;
         Node node;
         
