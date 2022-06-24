@@ -20,13 +20,15 @@ class Solution {
         return ans.get(ans.size()-1);
     }
     
-   public void left_view(TreeNode root , ArrayList<Integer> ans , int level){
-        if(root == null) return;
-        
-        if(ans.size() == level) ans.add(root.val);
-        
-        left_view(root.left , ans , level+1);
-        left_view(root.right , ans , level+1);
-        
+    public void left_view(TreeNode root , ArrayList<Integer> ans , int level){
+        while(root != null){
+            if(root == null) return;
+            if(ans.size() == level){
+                ans.add(root.val);
+            }
+            if(root.left != null) left_view(root.left , ans , level +1);
+            if(root.right != null) left_view(root.right , ans , level+1);
+            return;
+        }
     }
 }
