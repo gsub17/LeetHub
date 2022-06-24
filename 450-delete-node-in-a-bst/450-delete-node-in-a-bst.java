@@ -16,26 +16,29 @@
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
         if(root == null) return null;
-        if(key < root.val){
+        
+        if(root.val > key){
             root.left = deleteNode(root.left , key);
-        }else if(key > root.val){
+        }else if(root.val < key){
             root.right = deleteNode(root.right , key);
         }else{
             if(root.left == null) return root.right;
             if(root.right == null) return root.left;
             
-            root.val = MinVal(root.right);
+            root.val = MinValue(root.right);
             root.right = deleteNode(root.right , root.val);
             
         }
         return root;
+        
     }
-    int MinVal(TreeNode root){
-        int x = root.val;
+    
+    public int MinValue(TreeNode root){
+        int m = root.val;
         while(root.left != null){
-            x = root.left.val;
+            m = root.left.val;
             root = root.left;
         }
-        return x;
+        return m;
     }
 }
