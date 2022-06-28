@@ -1,10 +1,9 @@
 class Solution {
     public boolean isBipartite(int[][] graph) {
         // 1 - blue , -1 - red , 0 - uncolored
-        int len = graph.length;
-        int[] colors = new int[len];
+        int[] colors = new int[graph.length];
         
-        for(int i = 0 ; i < len ;i++){
+        for(int i = 0 ; i < graph.length ;i++){
             if(colors[i] == 1 || colors[i] == -1){
                 continue;
             }else{
@@ -18,17 +17,12 @@ class Solution {
                         if(colors[neighbour] == 0){
                             colors[neighbour] = -colors[curr];
                             q.add(neighbour);
-                        }
-                        
+                        }  
                         if(colors[neighbour] == colors[curr]) return false;
-                    }
-                    
-                    
+                    }   
                 }
             }
-            
         }
-        
         return true;
     }
 }
