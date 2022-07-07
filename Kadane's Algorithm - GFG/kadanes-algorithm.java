@@ -37,15 +37,15 @@ class Solution{
         
         // Your code here
         int sum = arr[0];
-        int currsum = arr[0];
+        int curr_sum = arr[0];
         
         for(int i = 1 ; i < n ;i++){
-            currsum+=arr[i];
-            
-            if(currsum < arr[i]){
-                currsum = arr[i];
+            curr_sum += arr[i];
+            if(curr_sum < arr[i]){
+                curr_sum = arr[i];
             }
-            sum = Math.max(sum , currsum);
+            
+            sum = Math.max(curr_sum , sum);
             
         }
         return sum;
