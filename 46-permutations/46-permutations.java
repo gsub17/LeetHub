@@ -1,34 +1,32 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans1 = new ArrayList<List<Integer>>();
-        ans1 = p(nums , 0 , nums.length-1 , ans1);
+        p(nums , ans1 , 0 , nums.length-1);
         return ans1;
     }
     
-    public List<List<Integer>> p(int[] nums , int s , int e , List<List<Integer>> ans1){
+    public void p(int[] nums , List<List<Integer>> ans1 , int s , int e){
         if(s == e){
             List<Integer> ans2 = new ArrayList<>();
-            for(int i : nums){
+            for(int i:nums){
                 ans2.add(i);
             }
             ans1.add(ans2);
-            return ans1;
+            return;
         }
         
-        for(int i = s ; i<= e;i++){
-            int[] s1 = swap(nums , s , i);
-            p(s1 , s+1 , e , ans1);
-            int[] s2 = swap(nums , s , i);
+        for(int i = s ; i <= e;i++){
+            int[] n1 = swap(nums , i , s);
+            p(n1 , ans1 , s+1 , e);
+            int[] n2 = swap(nums , i , s);
         }
-        return ans1;
+        return;
     }
     
-    public int[] swap(int[] nums , int x, int y){
-        int temp = nums[x];
-        nums[x] = nums[y];
-        nums[y] = temp;
+    public int[] swap(int[] nums , int i , int j){
+        int x = nums[i];
+        nums[i] = nums[j];
+        nums[j] = x;
         return nums;
     }
-    
-    
 }
