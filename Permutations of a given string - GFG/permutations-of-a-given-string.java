@@ -30,32 +30,32 @@ class Solution {
     public List<String> find_permutation(String S) {
         // Code here
         List<String> ans = new ArrayList<>();
-        ans = permute(S , 0 , S.length() -1 , ans);
+        permute(S , ans , 0 , S.length() -1);
         HashSet<String> set = new HashSet<>();
-        for(String a:ans){
-            set.add(a);
+        for(String i:ans){
+            set.add(i);
         }
-        List<String> ans2 = new ArrayList<>();
-        for(String a:set){
-            ans2.add(a);
+        
+        ans = new ArrayList<>();
+        for(String i:set){
+            ans.add(i);
         }
-        Collections.sort(ans2);
-        return ans2;
+        Collections.sort(ans);
+        return ans;
     }
     
-    public List<String> permute(String S , int s , int e , List<String> ans){
+    public void permute(String S , List<String> ans , int s , int e){
         if(s == e){
             ans.add(S);
-            return ans;
+            return;
         }
         
-        for(int i = s ; i <= e ;i++){
-            String l1 = swap(S , s , i);
-            permute(l1 , s+1 , e , ans);
-            String l2 = swap(S , s , i);
+        for(int i = s ; i <= e ;i++ ){
+            String new_S = swap(S , i , s);
+            permute(new_S , ans , s+1 , e);
+            String new_St = swap(S , i , s);
         }
-        return ans;
-        
+        return;
     }
     
     public String swap(String S , int i , int j){
