@@ -26,16 +26,15 @@ class GFG
 class Solution{
     String longestPalindrome(String S){
         // code here
-        int max = 0;
-        String result = "";
-        ArrayList<String> ans = new ArrayList<>();
-        for(int i = 0 ; i < S.length() ; i++){
-            for(int j = i+1 ; j <= S.length() ; j++){
+        int ans = 0;
+        String p = "";
+        for(int i = 0 ; i < S.length() ;i++){
+            for(int j = i+1 ; j <= S.length() ;j++){
                 String temp = S.substring(i,j);
                 int x = 0;
-                int y = temp.length()-1;
+                int y = temp.length() -1;
                 boolean check = true;
-                while(x < y){
+                while(x <= y){
                     if(temp.charAt(x) != temp.charAt(y)){
                         check = false;
                         break;
@@ -43,15 +42,15 @@ class Solution{
                     x++;
                     y--;
                 }
+                
                 if(check){
-                    int prev = max;
-                    max = Math.max(max , temp.length());
-                    if(max != prev){
-                        result = temp;
+                    if(temp.length() > ans){
+                        ans = temp.length();
+                        p = temp;
                     }
                 }
             }
         }
-        return result;
+        return p;
     }
 }
