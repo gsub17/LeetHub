@@ -5,14 +5,12 @@ class Solution {
         
         while(i <= j){
             int mid = (i+j)/2;
-            if(nums[mid] == target){
-                return mid;
-            }
+            if(nums[mid] == target) return mid;
             
             if(nums[mid] > target){
-                j = mid-1;
+                j = mid - 1;
             }else{
-                i = mid+1;
+                i = mid + 1;
             }
         }
         return -1;
