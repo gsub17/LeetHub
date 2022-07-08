@@ -65,18 +65,19 @@ class Solution
     long minCost(long arr[], int n) 
     {
         // your code here
-        PriorityQueue<Long> pq = new PriorityQueue<>();
-        long sum = 0;
-        for(long i:arr){
-            pq.add(i);
-        }
         
-        while(pq.size() >1){
-            long x = pq.poll();
-            long y = pq.poll();
-            sum += x+y;
-            pq.add(x+y);
+        PriorityQueue<Long> min_heap = new PriorityQueue<>();
+        for(long i:arr){
+            min_heap.add(i);
         }
-        return sum;
+        long ans = 0;
+        while(min_heap.size() > 1){
+            long x = min_heap.poll();
+            long y = min_heap.poll();
+            x = x + y;
+            ans+=x;
+            min_heap.add(x);
+        }
+        return ans;
     }
 }
