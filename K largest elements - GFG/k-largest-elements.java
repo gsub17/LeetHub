@@ -42,24 +42,15 @@ class Solution
     public static ArrayList<Integer> kLargest(int arr[], int n, int k)
     {
         // code here 
-        ArrayList<Integer> ans = new ArrayList<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        
-        for(int i = 0 ; i < k ; i++){
-            pq.add(arr[i]);
-        }
-        
-        for(int i = k ; i < n ; i++){
-            if(pq.peek() < arr[i]){
-                pq.remove();
-                pq.add(arr[i]);
-            }
-        }
-        
-        while(!pq.isEmpty()){
-            ans.add(pq.poll());
-        }
-        Collections.reverse(ans);
-        return ans;
+        PriorityQueue<Integer> max_heap = new PriorityQueue<>(Collections.reverseOrder());
+       for(int i:arr){
+        max_heap.add(i);
     }
+    ArrayList<Integer> ans = new ArrayList<>();
+    while(k > 0){
+        ans.add(max_heap.poll());
+        k--;
+    }
+     return ans;
+    }  
 }
