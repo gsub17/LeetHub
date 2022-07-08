@@ -112,17 +112,21 @@ class Solution
         HashSet<Node> set = new HashSet<>();
         Node curr = head;
         Node prev = null;
+        boolean contains = false;
         
         while(curr != null){
-            
             if(set.contains(curr)){
-                prev.next  = null;
+                contains = true;
                 break;
-            }else{
-                set.add(curr);
             }
-            prev= curr;
+            set.add(curr);
+            prev = curr;
             curr = curr.next;
         }
+        
+        if(contains){
+            prev.next = null;
+        }
+        
     }
 }
