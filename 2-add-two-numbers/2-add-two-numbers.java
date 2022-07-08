@@ -17,23 +17,38 @@ class Solution {
         
         int sum = 0;
         int carry = 0;
+        int x = 0;
+        int y = 0;
         
         while(curr1 != null || curr2 != null){
-            int x = (curr1 != null) ? curr1.val : 0;
-            int y = (curr2 != null) ? curr2.val : 0;
             
-            sum = x + y + carry;
+            if(curr1 != null){
+                x = curr1.val;
+            }else{
+                x = 0;
+            }
+          
+         if(curr2 != null){
+             y = curr2.val;
+         }else{
+             y = 0;
+         }
+            
+            sum = carry + x + y;
             carry = sum/10;
-            ans.next = new ListNode(sum%10);
-            ans = ans.next;
+            
+            temp.next = new ListNode(sum%10);
+            temp = temp.next;
             
             curr1 = (curr1 != null) ? curr1.next : null;
-            curr2 = (curr2 != null) ? curr2.next : null;
+            curr2 = (curr2 != null) ?   curr2.next :  null;
+            
+            
             
         }
         if(carry > 0){
-            ans.next = new ListNode(carry);
+            temp.next = new ListNode(carry);
         }
-        return temp.next;
+        return ans.next;
     }
 }
