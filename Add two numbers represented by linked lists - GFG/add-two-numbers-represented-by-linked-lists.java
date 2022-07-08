@@ -81,12 +81,12 @@ class Solution{
     static Node addTwoLists(Node first, Node second){
         // code here
         // return head of sum list
+        Node curr1 = reverse(first);
+        Node curr2 = reverse(second);
+        
         Node ans = new Node(0);
         Node temp = ans;
         
-        
-        Node curr1 = reverse(first);
-        Node curr2 = reverse(second);
         int sum = 0;
         int carry = 0;
         
@@ -94,23 +94,27 @@ class Solution{
             int x = (curr1 != null) ? curr1.data : 0;
             int y = (curr2 != null) ? curr2.data : 0;
             
-            sum = x + y + carry;
+            sum = carry + x + y;
             carry = sum/10;
             
-            ans.next = new Node(sum%10);
+            temp.next = new Node(sum%10);
+            temp = temp.next;
+            
             curr1 = (curr1 != null) ? curr1.next : null;
             curr2 = (curr2 != null) ? curr2.next : null;
-            ans = ans.next;
+            
         }
+        
         if(carry > 0){
-            ans.next = new Node(carry);
+            temp.next = new Node(carry);
         }
-        Node result = reverse(temp.next);
-        return result;
+        
+        Node ans2 = reverse(ans.next);
+        return ans2;
     }
     
-    static Node reverse(Node h){
-        Node curr = h;
+    static Node reverse(Node node){
+        Node curr = node;
         Node prev = null;
         
         while(curr != null){
