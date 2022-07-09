@@ -1,88 +1,73 @@
 class Solution {
-    public int maximalRectangle(char[][] matrix) {
+    public int maximalRectangle(char[][] m) {
         
-       int row = matrix.length;
-        int col = matrix[0].length;
-        int[][] mat = new int[row][col];
-        
-        for(int i = 0 ; i < row ; i++){
-            for(int j = 0 ; j < col ; j++){
-                if(matrix[i][j] == '1'){
-                    mat[i][j] = 1;
-                }else{
-                    mat[i][j] = 0;
-                }
+        int[][] matrix = new int[m.length][m[0].length];
+        for(int i = 0 ; i < m.length ;i++){
+            for(int j = 0 ; j < m[0].length ; j++){
+                matrix[i][j] = m[i][j] - '0';
             }
         }
         
-        int[] curr_row = mat[0];
-        System.out.println(Arrays.toString(curr_row));
+        int[] temp = new int[matrix[0].length];
+        for(int i = 0 ; i < matrix[0].length ; i++){
+            temp[i] = matrix[0][i];
+        }
         
+        int ans = nse_pse(temp);
         
-        int curr_sum = max_histogram(curr_row);
-        
-        
-        for(int i = 1 ; i < row ; i++){
-            for(int j = 0 ; j < col ; j++){
-                if(mat[i][j] == 1){
-                    curr_row[j] += 1;
+        for(int i = 1 ; i < m.length ;i++){
+            for(int j = 0 ; j < m[0].length ;j++){
+                if(matrix[i][j] == 1){
+                    temp[j] += 1;
                 }else{
-                    curr_row[j] = 0;
+                    temp[j] = 0;
                 }
             }
-            int temp = max_histogram(curr_row);
-            curr_sum = Math.max(curr_sum , temp);
+            int ans2 = nse_pse(temp);
+            ans = Math.max(ans2 , ans);
         }
-        return curr_sum;
-        
+        return ans;
     }
     
-    public int max_histogram(int[] m){
-        
+    public int nse_pse(int[] temp){
         Stack<Integer> s1 = new Stack<>();
-        int[] prev_smaller = new int[m.length];
+        int[] nse = new int[temp.length];
         
-        for(int i = 0 ; i < m.length ; i++){
-            while(!s1.isEmpty() && m[s1.peek()] >= m[i]){
+        for(int i = temp.length - 1 ; i >= 0 ; i--){
+            while(!s1.isEmpty() &&  temp[s1.peek()] >= temp[i]){
                 s1.pop();
             }
             
             if(s1.isEmpty()){
-                prev_smaller[i] = -1;
+                nse[i] = temp.length;
             }else{
-                prev_smaller[i] = s1.peek();
+                nse[i] = s1.peek();
             }
-            s1.push(i);
             
+            s1.push(i);
         }
         
-         Stack<Integer> s2 = new Stack<>();
-        int[] next_smaller = new int[m.length];
+        Stack<Integer> s2 = new Stack<>();
+        int[] pse = new int[temp.length];
         
-        for(int i = m.length-1 ; i >= 0; i--){
-            while(!s2.isEmpty() && m[s2.peek()] >= m[i]){
+        for(int i = 0 ; i< temp.length ;i++){
+            while(!s2.isEmpty() && temp[s2.peek()] >= temp[i]){
                 s2.pop();
             }
             
             if(s2.isEmpty()){
-                next_smaller[i] = m.length;
+                pse[i] = -1;
             }else{
-                next_smaller[i] = s2.peek();
+                pse[i] = s2.peek();
             }
             s2.push(i);
-            
         }
         int ans = 0;
-        
-//        System.out.println(Arrays.toString(next_smaller));
-//         System.out.println(Arrays.toString(prev_smaller));
-        
-        for(int i = 0 ;i < m.length ; i++){
-            int temp = (next_smaller[i] - prev_smaller[i]-1) * m[i];
-            ans = Math.max(temp , ans);
+        for(int i = 0 ; i < temp.length ;i++){
+            ans = Math.max(ans , (nse[i] - pse[i] - 1)*temp[i]);
         }
         return ans;
-        
-        
     }
+    
+    
 }
