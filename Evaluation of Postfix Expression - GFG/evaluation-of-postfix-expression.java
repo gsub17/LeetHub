@@ -23,30 +23,31 @@ class Solution
         // Your code here
         Stack<Integer> s = new Stack<>();
         char[] arr = S.toCharArray();
+        
         int ans = 0;
-        for(int i = 0 ; i < S.length() ; i++){
-            if(Character.isDigit(arr[i])){
-                int z = arr[i] - '0';
-                s.push(z);
-            }else if(arr[i] == '+'){
-                int x2 = s.pop();
-                int x1 = s.pop();
-                s.push(x2+x1);
-                }else if(arr[i] == '-'){
-                    int x2 = s.pop();
-                int x1 = s.pop();
-                s.push(x1-x2);
-                }else if(arr[i] == '*'){
-                    int x2 = s.pop();
-                int x1 = s.pop();
-                s.push(x2*x1);
+        for(char i:arr){
+            if(Character.isDigit(i)){
+                int x = i - '0';
+                s.push(x);
+            }else{
+                int n2 = s.pop() ;
+                int n1 = s.pop();
+                if(i == '+'){
+                    n2 = n2 + n1;
+                    s.push(n2);
+                }else if(i == '-'){
+                    n2 = n1 - n2;
+                    s.push(n2);
+                }else if(i == '/'){
+                    n2 = n1/n2;
+                    s.push(n2);
                 }else{
-                  int x2 = s.pop();
-                int x1 = s.pop();
-                s.push(x1/x2);  
+                    n2 = n1*n2;
+                    s.push(n2);
                 }
             }
+        }
         
-        return s.pop();
+        return s.peek();
     }
 }
