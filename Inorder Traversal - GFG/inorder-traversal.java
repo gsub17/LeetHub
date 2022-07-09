@@ -113,15 +113,16 @@ class Solution {
     ArrayList<Integer> inOrder(Node root) {
         // Code
         ArrayList<Integer> ans = new ArrayList<>();
-        LNR(root,ans);
+        inorder(root,ans);
         return ans;
     }
     
-    void LNR(Node root , ArrayList<Integer> ans){
+    void inorder(Node root , ArrayList<Integer> ans){
         if(root == null) return;
-        LNR(root.left , ans);
+        
+        inorder(root.left , ans);
         ans.add(root.data);
-        LNR(root.right , ans);
+        inorder(root.right , ans);
         return;
     }
 }
