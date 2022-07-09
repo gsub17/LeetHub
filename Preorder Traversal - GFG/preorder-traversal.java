@@ -125,16 +125,18 @@ class BinaryTree
     static ArrayList<Integer> preorder(Node root)
     {
         // Code here
-        ArrayList<Integer> ans = new ArrayList<>();
-        NLR(root , ans);
+     ArrayList<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
         return ans;
     }
     
-    static void NLR(Node root , ArrayList<Integer> ans){
-        if(root == null) return ;
+    static void inorder(Node root , ArrayList<Integer> ans){
+        if(root == null) return;
+        
         ans.add(root.data);
-        NLR(root.left , ans);
-        NLR(root.right , ans);
-    }
+        inorder(root.left , ans);
+        inorder(root.right , ans);
+        return;
 
+}
 }
