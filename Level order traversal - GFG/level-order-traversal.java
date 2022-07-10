@@ -133,13 +133,16 @@ class Solution
         Queue<Node> q = new LinkedList<>();
         q.add(node);
         
-        while(!q.isEmpty()){
-            Node curr = q.poll();
-            ans.add(curr.data);
-            
-            if(curr.left != null) q.add(curr.left);
-            if(curr.right != null)q.add(curr.right);
+        if(node == null){
+            return ans;
         }
+        
+        while(!q.isEmpty()){
+                Node temp = q.poll();
+                ans.add(temp.data);
+                if(temp.left != null) q.add(temp.left);
+                if(temp.right != null) q.add(temp.right);
+            }
         return ans;
     }
 }
