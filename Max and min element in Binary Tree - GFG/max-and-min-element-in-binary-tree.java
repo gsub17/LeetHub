@@ -111,25 +111,30 @@ class Node {
 }
 */
 class Solution{
-    static ArrayList<Integer> ans;
+    
     public static int findMax(Node root){
         //code here
-        ans = new ArrayList<>();
-        inorder(root , ans);
-        return Collections.max(ans);
+        ArrayList<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
+        Collections.sort(ans);
+        return ans.get(ans.size()-1);
+        
     }
     public static int findMin(Node root){
         //code here
-        return Collections.min(ans);
+        ArrayList<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
+        Collections.sort(ans);
+        return ans.get(0);
+        
     }
     
     public static void inorder(Node root , ArrayList<Integer> ans){
         if(root == null) return ;
+        
         inorder(root.left , ans);
         ans.add(root.data);
         inorder(root.right , ans);
         return;
     }
-    
-    
 }
