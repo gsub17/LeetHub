@@ -130,13 +130,12 @@ class Solution
 		    return root;
 		}
 		
-		Node l = lca(root.left , n1 , n2);
-		Node r = lca(root.right , n1 , n2);
+		Node left = lca(root.left , n1 , n2);
+		Node right = lca(root.right , n1 , n2);
 		
-		if(l == null) return r;
-		if(r == null) return l;
+		if(left == null) return right;
+		if(right == null) return left;
 		return root;
-		
 	}
 }
 
