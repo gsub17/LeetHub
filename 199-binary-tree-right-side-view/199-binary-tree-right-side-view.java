@@ -15,20 +15,17 @@
  */
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-         List<Integer> ans = new ArrayList<>();
-      leftview(root , ans , 0);
-      return ans;
+        List<Integer> ans = new ArrayList<>();
+        right(root , ans , 0);
+        return ans;
     }
     
-    void leftview(TreeNode root , List<Integer> ans , int level){
+    public void right(TreeNode root , List<Integer> ans , int level){
         if(root == null) return;
-        if(ans.size() == level){
-            ans.add(root.val);
-        }
-        leftview(root.right , ans , level +1);
-        leftview(root.left , ans , level +1);
         
-        return;
+        if(ans.size() == level) ans.add(root.val);
         
+        right(root.right , ans,level+1);
+        right(root.left , ans , level+1);
     }
 }
