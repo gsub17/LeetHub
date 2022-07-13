@@ -109,20 +109,20 @@ class Tree {
     int findCeil(Node root, int key) {
         if (root == null) return -1;
         // Code here
-        ArrayList<Integer> ans = new ArrayList<>();
-        inorder(root , ans);
-        int a = 0;
-        for(int i = 0 ; i < ans.size() ; i++){
-            if(ans.get(i) >= key){
-                a = ans.get(i);
-                return a;
-            }
-        }
-        return a;
+         ArrayList<Integer> ans = new ArrayList<>();
+         inorder(root,ans);
+         
+         for(int i = 0 ; i < ans.size() ; i++ ){
+             if(ans.get(i) >= key ){
+                 return ans.get(i);
+             }
+         }
+         return -1;
     }
     
-    static void inorder(Node root , ArrayList<Integer> ans){
-        if(root == null) return ;
+    void inorder(Node root , ArrayList<Integer> ans){
+        if(root==null) return;
+        
         inorder(root.left , ans);
         ans.add(root.data);
         inorder(root.right , ans);
