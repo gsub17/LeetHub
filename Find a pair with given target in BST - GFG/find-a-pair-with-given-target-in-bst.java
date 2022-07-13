@@ -106,27 +106,27 @@ class Solution
     {
         // Write your code here
         ArrayList<Integer> ans = new ArrayList<>();
-        inorder(root , ans);
-        int i = 0 ;
+        inorder(root,ans);
+        int i = 0;
         int j = ans.size()-1;
-        while(i <= j){
-            if(ans.get(i) + ans.get(j) == target){
+        while(i < j){
+            if(ans.get(i)+ans.get(j) == target){
                 return 1;
-            }
-            if(ans.get(i) + ans.get(j) > target){
+            }else if(ans.get(i)+ans.get(j) > target){
                 j--;
             }else{
                 i++;
             }
         }
         return 0;
-        
     }
     
     public void inorder(Node root , ArrayList<Integer> ans){
-        if(root == null) return;
+        if(root == null) return ;
         inorder(root.left , ans);
         ans.add(root.data);
-        inorder(root.right , ans);
+        inorder(root.right,ans);
+        return;
     }
+    
 }
