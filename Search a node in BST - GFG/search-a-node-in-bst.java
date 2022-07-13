@@ -60,12 +60,24 @@ class BST {
     // Function to search a node in BST.
     boolean search(Node root, int x) {
         // Your code here
-        if(root == null) return false;
+        ArrayList<Integer> ans = new ArrayList<>();
+        inorder(root,ans);
         
-        if(root.data == x) return true;
+        for(int i:ans){
+            if(i == x){
+                return true;
+            }
+        }
         
-        if(root.data > x) return search(root.left , x);
+        return false;
+    }
+    
+    void inorder(Node root , ArrayList<Integer> ans){
+        if(root==null) return;
         
-        return search(root.right , x);
+        inorder(root.left , ans);
+        ans.add(root.data);
+        inorder(root.right , ans);
+        return;
     }
 }
