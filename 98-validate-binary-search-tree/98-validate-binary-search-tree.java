@@ -16,25 +16,24 @@
 class Solution {
     public boolean isValidBST(TreeNode root) {
         ArrayList<Integer> ans = new ArrayList<>();
-        inorder(root , ans);
-        ArrayList<Integer> k = new ArrayList<>();
-        System.out.println(ans.toString());
-        for(int i = 0 ; i < ans.size() -1;i++){
-            if(ans.get(i) >= ans.get(i+1)){
+        LNR(root,ans);
+        
+        for(int i = 1 ; i < ans.size() ; i++){
+            if(ans.get(i) > ans.get(i-1)){
+                continue;
+            }else{
                 return false;
             }
         }
-        
         return true;
-        
     }
     
-    public void inorder(TreeNode root , ArrayList<Integer> ans){
-        if(root == null ) return;
+    public void LNR(TreeNode root , ArrayList<Integer> ans){
+        if(root == null) return ;
         
-        inorder(root.left , ans);
+        LNR(root.left , ans);
         ans.add(root.val);
-        inorder(root.right , ans);
+        LNR(root.right , ans);
         return;
     }
 }
