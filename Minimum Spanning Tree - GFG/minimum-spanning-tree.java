@@ -46,6 +46,19 @@ class DriverClass
 
 
 // User function Template for Java
+class Pair implements Comparable<Pair>{
+    int v;
+    int wt;
+    
+    Pair(int v,int wt){
+        this.v = v;
+        this.wt = wt;
+    }
+    
+    public int compareTo(Pair that){
+        return this.wt-that.wt;
+    }
+}
 
 class Solution
 {
@@ -61,41 +74,27 @@ class Solution
         
         while(!q.isEmpty()){
             Pair curr = q.poll();
-            int v = curr.v;
-            int wt = curr.wt;
+            int vertex = curr.v;
+            int weight = curr.wt;
             
-            if(visited[v]){
+            if(visited[vertex]){
                 continue;
             }
             
-            ans+=wt;
-            visited[v] = true;
+            visited[vertex] = true;
+            ans+=weight;
             
-            ArrayList<ArrayList<Integer>> neighbours = adj.get(v);
+            ArrayList<ArrayList<Integer>> neighbour =  adj.get(vertex);
             
-            for(ArrayList<Integer> list : neighbours){
-                int vertex = list.get(0);
-                int weight = list.get(1);
-                if(!visited[vertex]){
-                    q.add(new Pair(vertex , weight));
+            for(ArrayList<Integer> list:neighbour){
+                int v = list.get(0);
+                int w = list.get(1);
+                
+                if(visited[v] == false){
+                    q.add(new Pair(v,w));
                 }
             }
-            
         }
-        
         return ans;
-    }
-    
-    static class  Pair implements Comparable<Pair>{
-        int wt;
-        int v;
-         Pair(int v , int wt){
-            this.v = v;
-            this.wt = wt;
-        }
-        
-        public int compareTo(Pair that){
-            return this.wt - that.wt;
-        }
     }
 }
