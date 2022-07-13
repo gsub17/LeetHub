@@ -122,6 +122,15 @@ class Node{
     }
 }
 */
+class Pair{
+    int hd;
+    Node node;
+    
+    public Pair(int hd,Node node ){
+        this.hd = hd;
+        this.node = node;
+    }
+}
 
 class Solution
 {
@@ -129,11 +138,12 @@ class Solution
     //from left to right in Binary Tree.
     static ArrayList<Integer> topView(Node root)
     {
+        // add your code
         Queue<Pair> q = new LinkedList<>();
-        ArrayList<Integer> ans = new ArrayList<>();
         Map<Integer,Integer> map = new TreeMap<>();
         
         q.add(new Pair(0,root));
+        
         while(!q.isEmpty()){
             Pair curr = q.poll();
             
@@ -146,25 +156,15 @@ class Solution
             }
             
             if(curr.node.right != null){
-                q.add(new Pair(curr.hd + 1 , curr.node.right));
+                q.add(new Pair(curr.hd+1 , curr.node.right));
             }
         }
         
+        ArrayList<Integer> ans = new ArrayList<>();
         for(Map.Entry<Integer,Integer> entry:map.entrySet()){
             ans.add(entry.getValue());
         }
         return ans;
         
-        
-    }
-    
-    static class Pair{
-        int hd;
-        Node node;
-        
-        public  Pair(int hd , Node node){
-            this.hd = hd;
-            this.node = node;
-        }
     }
 }
