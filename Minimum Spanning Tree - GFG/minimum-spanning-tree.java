@@ -50,7 +50,7 @@ class Pair implements Comparable<Pair>{
     int v;
     int wt;
     
-    Pair(int v,int wt){
+    public Pair(int v , int wt){
         this.v = v;
         this.wt = wt;
     }
@@ -66,11 +66,12 @@ class Solution
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
         // Add your code here
-        boolean[] visited = new boolean[V];
         PriorityQueue<Pair> q = new PriorityQueue<>();
+        boolean[] visited = new boolean[V];
         
         q.add(new Pair(0,0));
         int ans = 0;
+        
         
         while(!q.isEmpty()){
             Pair curr = q.poll();
@@ -80,21 +81,20 @@ class Solution
             if(visited[vertex]){
                 continue;
             }
-            
             visited[vertex] = true;
             ans+=weight;
+            ArrayList<ArrayList<Integer>> neighbours = adj.get(vertex);
             
-            ArrayList<ArrayList<Integer>> neighbour =  adj.get(vertex);
-            
-            for(ArrayList<Integer> list:neighbour){
+            for(ArrayList<Integer> list:neighbours){
                 int v = list.get(0);
-                int w = list.get(1);
+                int wt = list.get(1);
                 
                 if(visited[v] == false){
-                    q.add(new Pair(v,w));
+                    q.add(new Pair(v,wt));
                 }
             }
         }
         return ans;
+        
     }
 }
