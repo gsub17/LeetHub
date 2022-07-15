@@ -53,61 +53,64 @@ class DriverClass
 
 //User function Template for Java
 class Pair implements Comparable<Pair>{
-    int v;
     int wt;
+    int v;
     
-    Pair(int v , int wt){
+    public Pair(int v , int wt){
         this.v = v;
         this.wt = wt;
     }
     
     public int compareTo(Pair that){
-        return this.wt-that.wt;
+        return this.wt - that.wt;
     }
 }
-
 
 class Solution
 {
     //Function to find the shortest distance of all the vertices
     //from the source vertex S.
+    
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         // Write your code here
         PriorityQueue<Pair> q = new PriorityQueue<>();
         boolean[] visited = new boolean[V];
         
+        q.add(new Pair(S,0));
         int[] ans = new int[V];
-        Arrays.fill(ans,1000000);
+        Arrays.fill(ans,100000000);
         ans[S] = 0;
         
-        q.add(new Pair(S,0));
         
         while(!q.isEmpty()){
-            Pair curr = q.poll();
-            int weight = curr.wt;
-            int vertex = curr.v;
+            Pair  curr = q.poll();
             
-             if(visited[vertex]){
+            int vertex = curr.v;
+            int weight = curr.wt;
+            
+            if(visited[vertex]){
                 continue;
             }
             
             visited[vertex] = true;
-            ArrayList<ArrayList<Integer>> neighbours = adj.get(vertex);
-           
-           for(ArrayList<Integer> list:neighbours){
-               int v = list.get(0);
-               int wt = list.get(1);
-               
-               if(ans[v] > wt + ans[vertex]){
-                   ans[v] = ans[vertex] + wt;
-                   q.add(new Pair(v , ans[v]));
-               }
-           }
             
+            ArrayList<ArrayList<Integer>> neighbours =  adj.get(vertex);
+            for(ArrayList<Integer> list : neighbours){
+                int v = list.get(0);
+                int wt = list.get(1);
+                
+                
+                if(ans[v] > ans[vertex] + wt){
+                    ans[v] = ans[vertex] + wt;
+                    q.add(new Pair(v , ans[v]));
+                }
+            }
             
         }
         return ans;
+        
+        
     }
 }
 
