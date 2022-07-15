@@ -46,6 +46,7 @@ class DriverClass
 
 
 // User function Template for Java
+
 class Pair implements Comparable<Pair>{
     int v;
     int wt;
@@ -56,12 +57,11 @@ class Pair implements Comparable<Pair>{
     }
     
     public int compareTo(Pair that){
-        return this.wt-that.wt;
+        return this.wt - that.wt;
     }
 }
-
 class Solution
-{
+{   
     //Function to find sum of weights of edges of the Minimum Spanning Tree.
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
@@ -71,30 +71,27 @@ class Solution
         
         q.add(new Pair(0,0));
         int ans = 0;
-        
-        
         while(!q.isEmpty()){
             Pair curr = q.poll();
+            
             int vertex = curr.v;
             int weight = curr.wt;
             
             if(visited[vertex]){
                 continue;
             }
+            
             visited[vertex] = true;
             ans+=weight;
-            ArrayList<ArrayList<Integer>> neighbours = adj.get(vertex);
             
+            ArrayList<ArrayList<Integer>> neighbours = adj.get(vertex);
             for(ArrayList<Integer> list:neighbours){
                 int v = list.get(0);
                 int wt = list.get(1);
                 
-                if(visited[v] == false){
-                    q.add(new Pair(v,wt));
-                }
+                if(visited[v] == false) q.add(new Pair(v,wt));
             }
         }
         return ans;
-        
     }
 }
