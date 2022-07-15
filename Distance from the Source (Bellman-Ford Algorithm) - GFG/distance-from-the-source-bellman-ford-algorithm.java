@@ -56,20 +56,21 @@ class Solution
     static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> adj, int S)
     {
         // Write your code here
-        int[] dist = new int[V];
-        Arrays.fill(dist,100000000);
+        int[] ans = new int[V];
+        Arrays.fill(ans , 100000000);
+        ans[S] = 0;
         
-        dist[S]=0;
-        
-        for(int i = 1 ; i < V ; i++){
-            for(ArrayList<Integer> it:adj){
-                if(dist[it.get(0)]+it.get(2)<dist[it.get(1)]){
-                    dist[it.get(1)]=dist[it.get(0)]+it.get(2);
+        for(int i = 1 ; i < V ; i++ ){
+            for(ArrayList<Integer> list:adj){
+                if(ans[list.get(1)] > ans[list.get(0)] + list.get(2)){
+                    ans[list.get(1)] = ans[list.get(0)] + list.get(2);
                 }
-                
             }
         }
-        return dist;
+        return ans;
+        
+        
+        
     }
 }
 
