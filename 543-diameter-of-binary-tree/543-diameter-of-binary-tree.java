@@ -16,15 +16,16 @@
 class Solution {
     int ans = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        diameter(root);
+    
+        d(root);
         return ans-1;
     }
     
-    public int diameter(TreeNode root){
+    public int d(TreeNode root){
         if(root == null) return 0;
         
-        int ld = diameter(root.left);
-        int rd = diameter(root.right);
+        int ld = d(root.left);
+        int rd = d(root.right);
         
         ans = Math.max(ans , ld+rd+1);
         return Math.max(ld,rd)+1;
