@@ -15,13 +15,20 @@
  */
 class Solution {
     public int maxDepth(TreeNode root) {
-        int ans = 0;
-        ans = height(root);
-        return ans;
+        ArrayList<Integer> ans = new ArrayList<>();
+        left_view(ans , 0 , root);
+        return ans.size();
     }
     
-    public int height(TreeNode root){
-        if(root == null) return 0;
-        return Math.max(height(root.left) , height(root.right))+1;
+    public void left_view(ArrayList<Integer> ans , int level , TreeNode root){
+        if(root == null) return ;
+        
+        if(level == ans.size()){
+            ans.add(root.val);
+        }
+        
+        left_view(ans , level + 1 , root.left);
+        left_view(ans , level + 1 , root.right);
+        return;
     }
 }
