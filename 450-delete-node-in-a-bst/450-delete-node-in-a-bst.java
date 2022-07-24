@@ -15,7 +15,8 @@
  */
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
-        if(root == null) return null;
+        
+        if(root == null) return root;
         
         if(root.val > key){
             root.left = deleteNode(root.left , key);
@@ -25,20 +26,19 @@ class Solution {
             if(root.left == null) return root.right;
             if(root.right == null) return root.left;
             
-            root.val = MinValue(root.right);
+            root.val = minValue(root.right);
             root.right = deleteNode(root.right , root.val);
             
         }
         return root;
-        
     }
     
-    public int MinValue(TreeNode root){
-        int m = root.val;
+    public int minValue(TreeNode root){
+        int p = root.val;
         while(root.left != null){
-            m = root.left.val;
+            p = root.left.val;
             root = root.left;
         }
-        return m;
+        return p;
     }
 }
